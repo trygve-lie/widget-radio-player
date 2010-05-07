@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget defaultmode="application" network="public private">
+    <widgetname>NRK Radio</widgetname>
+    <description>NRK - Radio Player</description>
+    <width>300</width>
+    <height>120</height>
+    <icon>gfx/favicon/128_valdor.png</icon>
+    <icon>gfx/favicon/64_valdor.png</icon>
+    <icon>gfx/favicon/32_valdor.png</icon>
+    <icon>gfx/favicon/16_valdor.png</icon>
+    <author>
+        <name>Trygve Lie</name>
+        <email>post@trygve-lie.com</email>
+        <link>http://www.trygve-lie.com/</link>
+    </author>
+    <id>
+        <host>radio.trygve-lie.com</host>
+        <name>nrk</name>
+        <revised>2010-05</revised>
+    </id>
+</widget>

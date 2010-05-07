@@ -1,0 +1,94 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: #999999;
+}
+#nrk-player{
+    background-color: #cccccc;
+    width: 300px;
+    height: 120px;
+    overflow: hidden;
+    position: absolute;
+    margin-left: -150px;
+    margin-top: -60px;
+    left: 50%;
+    top: 50%;
+    -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
+}
+
+#nrk-player #display{
+    height: 66px;
+    background-image: url(../gfx/default/background-controls.jpg);
+    background-position: top left;
+	background-repeat: no-repeat;
+    color: #ffffff;
+    border-bottom: solid 4px #000000;
+}
+
+/**
+ * Play button
+ */
+#nrk-player #playpause{
+    position: absolute;
+    top: 75px;
+    left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
+    width: 40px;
+    height: 40px;
+    background-image: url(../gfx/default/button-play.png);
+    background-position: top left;
+	background-repeat: no-repeat;
+    /*background-color: red;*/
+    cursor: pointer;
+}
+
+
+#nrk-player #mute{
+    /*background-color: red;*/
+    position: absolute;
+    top: 90px;
+    left: 5px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../gfx/default/button-sound-mute.png);
+    background-position: top left;
+	background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#nrk-player #min{
+    /*background-color: red;*/
+    position: absolute;
+    top: 90px;
+    left: 35px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../gfx/default/button-sound-min.png);
+    background-position: top left;
+	background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+#nrk-player #volume{
+    position: absolute;
+    top: 100px;
+    left: 60px;
+    width: 40px;
+    height: 5px;
+    background-color: #999999;
+}
+
+#nrk-player #max{
+    /*background-color: red;*/
+    position: absolute;
+    top: 90px;
+    left: 105px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../gfx/default/button-sound-max.png);
+    background-position: top left;
+	background-repeat: no-repeat;
+    cursor: pointer;
+}
+
