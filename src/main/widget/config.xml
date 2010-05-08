@@ -4,10 +4,10 @@
     <description>NRK - Radio Player</description>
     <width>300</width>
     <height>120</height>
-    <icon>gfx/favicon/128_valdor.png</icon>
-    <icon>gfx/favicon/64_valdor.png</icon>
-    <icon>gfx/favicon/32_valdor.png</icon>
-    <icon>gfx/favicon/16_valdor.png</icon>
+    <icon>gfx/icon/icon_128.png</icon>
+    <icon>gfx/icon/icon_64.png</icon>
+    <icon>gfx/icon/icon_32.png</icon>
+    <icon>gfx/icon/icon_16.png</icon>
     <author>
         <name>Trygve Lie</name>
         <email>post@trygve-lie.com</email>
