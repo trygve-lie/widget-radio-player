@@ -1,0 +1,152 @@
+{
+    "station" : {
+        "name" : "NRK",
+        "fullname" : "Norsk Riks Kringkasting",
+        "website" : "http://www.nrk.no/",
+        "qualitys" : ["Low", "Middle", "Heigh"],
+        "defaultChannel" : "P1",
+        "channels" : [
+
+            {
+                "name" : "P1",
+                "channel" : "NRK P1",
+                "website" : "http://www.nrk.no/p1/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-p1-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-p1-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "P2",
+                "channel" : "NRK P2",
+                "website" : "http://www.nrk.no/p2/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-p2-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-p2-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "P3",
+                "channel" : "NRK P3",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-petre-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-petre-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "MP3",
+                "channel" : "NRK mP3",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-mpetre-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-mpetre-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "SUPER",
+                "channel" : "NRK Super",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no:80/nrk-super-128.ogg",
+                        "mp3" : "http://radio.hiof.no:80/nrk-super-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "ALLTIDNYHETER",
+                "channel" : "NRK Alltid Nyheter",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-alltid-nyheter-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-alltid-nyheter-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "SAMI",
+                "channel" : "NRK Sami Radio",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no:80/nrk-sami-radio-128.ogg",
+                        "mp3" : "http://radio.hiof.no:80/nrk-sami-radio-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "KLASSISK",
+                "channel" : "NRK Alltid Klassisk",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-alltid-klassisk-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-alltid-klassisk-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "JAZZ",
+                "channel" : "NRK Jazz",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-jazz-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-jazz-128"
+                    }
+                ]
+            },
+
+            {
+                "name" : "SPORT",
+                "channel" : "NRK Sport",
+                "website" : "http://www.nrk.no/",
+                "logo" : "",
+                "streams" : [
+                    {
+                        "quality" : "Middle",
+                        "ogg" : "http://radio.hiof.no/nrk-sport-128.ogg",
+                        "mp3" : "http://radio.hiof.no/nrk-sport-128"
+                    }
+                ]
+            }
+
+        ]
+    }
+}
