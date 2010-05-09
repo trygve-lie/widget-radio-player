@@ -27,10 +27,12 @@ body{
     border-bottom: solid 4px #000000;
 }
 
+
+
 /**
  * Play button
  */
-#nrk-player #playpause{
+#nrk-player #play{
     position: absolute;
     top: 75px;
     left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -44,27 +46,37 @@ body{
 }
 
 
-#nrk-player #mute{
-    /*background-color: red;*/
+#nrk-player #pause{
     position: absolute;
-    top: 90px;
-    left: 5px;
-    width: 25px;
-    height: 25px;
-    background-image: url(../gfx/default/button-sound-mute.png);
-    background-position: top left;
-	background-repeat: no-repeat;
+    top: 75px;
+    left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    /*background-color: red;*/
     cursor: pointer;
 }
 
-#nrk-player #min{
+#nrk-player #stop{
+    position: absolute;
+    top: 75px;
+    left: 210px;    /* 255px + 40px = 295px = 5px left margin  */
+    width: 40px;
+    height: 40px;
+    background-color: red;
+    /*background-color: red;*/
+    cursor: pointer;
+}
+
+
+#nrk-player #volumeMin{
     /*background-color: red;*/
     position: absolute;
     top: 90px;
     left: 35px;
     width: 25px;
     height: 25px;
-    background-image: url(../gfx/default/button-sound-min.png);
+    background-image: url(../gfx/default/button-sound-mute.png);
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
@@ -77,9 +89,10 @@ body{
     width: 40px;
     height: 5px;
     background-color: #999999;
+    cursor: pointer;
 }
 
-#nrk-player #max{
+#nrk-player #volumeMax{
     /*background-color: red;*/
     position: absolute;
     top: 90px;

@@ -1,39 +1,40 @@
-var nrkplayer = {
+jQuery(document).ready(function(){
 
-    VERSION:'1.0.0',
-
-    audio:undefined,
-    el_playpause:undefined,
-
-    volume:5,
-
-    init:function(){
-        nrkplayer.audio = new Audio('http://radio.hiof.no/nrk-petre-172.ogg');
-        // nrkplayer.el_audio.setAttribute('src', 'http://radio.hiof.no/nrk-petre-172.ogg');
-        // nrkplayer.el_audio.onTimeUpdate = nrkplayer.timer;
-        // nrkplayer.el_audio.load();
-
-        console.log('init');
-
-        
-        nrkplayer.el_playpause = document.getElementById('playpause');
-        nrkplayer.el_playpause.onclick = nrkplayer.play;
-    },
-
-    timer:function(){
-        console.log('hei');
-    },
-
-    play:function(){
-        nrkplayer.el_playpause.onclick = nrkplayer.pause;
-        nrkplayer.audio.play();
-        alert(nrkplayer.audio.currentSrc);
-        nrkplayer.audio.volume = 9;
-    },
+	// For performance.
+	var jpPlayInfo = jQuery("#duration");
 
 
-    pause:function(){
-        nrkplayer.el_playpause.onclick = nrkplayer.play;
-        nrkplayer.audio.pause();
-    }
-};
+	jQuery("#player").jPlayer({
+		ready: function () {
+            this.element.jPlayer("setFile", "http://radio.hiof.no/nrk-p2-128", "http://radio.hiof.no/nrk-jazz-172.ogg");
+		},
+		nativeSupport: true,
+        volume: 60,
+		oggSupport: true,
+		customCssIds: true
+	})
+	.jPlayer("cssId", "play", "play")
+	.jPlayer("cssId", "pause", "pause")
+	.jPlayer("cssId", "stop", "stop")
+	.jPlayer("cssId", "volumeMin", "volumeMin")
+	.jPlayer("cssId", "volumeMax", "volumeMax")
+	.jPlayer("cssId", "volumeBar", "volume")
+	.jPlayer("onProgressChange", function(lp,ppr,ppa,pt,tt) {
+ 		jpPlayInfo.text(jQuery.jPlayer.convertTime(pt));
+	});
+
+    
+	function changeTrack(e) {
+		jQuery("#duration").text(jQuery(this).text());
+		jQuery("#player").jPlayer("setFile", jQuery(this).attr("href")).jPlayer("play");
+		jQuery(this).blur();
+		return false;
+	}
+
+
+    jQuery.jPlayer.timeFormat.showHour = true;
+    jQuery.jPlayer.timeFormat.sepHour = ":";
+    jQuery.jPlayer.timeFormat.sepMin = ":";
+    jQuery.jPlayer.timeFormat.sepSec = "";
+
+});
