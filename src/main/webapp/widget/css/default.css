@@ -1,12 +1,22 @@
+@font-face {
+	font-family: 'RadiolandRegular';
+	src: url('../fonts/RADIOLAND-webfont.eot');
+	src: local('RadiolandRegular'), url('../fonts/RADIOLAND-webfont.woff') format('woff'), url('../fonts/RADIOLAND-webfont.ttf') format('truetype'), url('../fonts/RADIOLAND-webfont.svg#webfont') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
 }
+
 body{
-    background-color: #999999;
+    background-color: #999;
 }
+
 #nrk-player{
-    background-color: #cccccc;
+    background-color: #ccc;
     width: 300px;
     height: 120px;
     overflow: hidden;
@@ -18,16 +28,46 @@ body{
     -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
 }
 
+#nrk-player #stationPicker{
+    position:absolute;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    opacity: 0.8;
+    display: none;
+    width: 100%;
+    height: 66px;
+    color: #fff;
+}
+
+#nrk-player #stationPicker div{
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 28px;
+    height: 28px;
+    background-color: #ffffff;
+    color: #000;
+    cursor: pointer;
+}
+
+
 #nrk-player #display{
     height: 66px;
     background-image: url(../gfx/default/background-controls.jpg);
     background-position: top left;
 	background-repeat: no-repeat;
-    color: #ffffff;
-    border-bottom: solid 4px #000000;
+    color: #fff;
+    border-bottom: solid 4px #000;
+    font-family: 'RadiolandRegular', Arial;
+    font-size: 24px;
 }
 
-
+#nrk-player #toggleStationPicker{
+    font-family: Arial;
+    font-size: 11px;
+    cursor: pointer;
+}
 
 /**
  * Play button
@@ -41,7 +81,6 @@ body{
     background-image: url(../gfx/default/button-play.png);
     background-position: top left;
 	background-repeat: no-repeat;
-    /*background-color: red;*/
     cursor: pointer;
 }
 
@@ -53,7 +92,6 @@ body{
     width: 40px;
     height: 40px;
     background-color: green;
-    /*background-color: red;*/
     cursor: pointer;
 }
 
@@ -64,13 +102,11 @@ body{
     width: 40px;
     height: 40px;
     background-color: red;
-    /*background-color: red;*/
     cursor: pointer;
 }
 
 
 #nrk-player #volumeMin{
-    /*background-color: red;*/
     position: absolute;
     top: 90px;
     left: 35px;
@@ -88,12 +124,11 @@ body{
     left: 60px;
     width: 40px;
     height: 5px;
-    background-color: #999999;
+    background-color: #999;
     cursor: pointer;
 }
 
 #nrk-player #volumeMax{
-    /*background-color: red;*/
     position: absolute;
     top: 90px;
     left: 105px;

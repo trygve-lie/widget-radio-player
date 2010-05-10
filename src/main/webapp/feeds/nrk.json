@@ -3,7 +3,12 @@
         "name" : "NRK",
         "fullname" : "Norsk Riks Kringkasting",
         "website" : "http://www.nrk.no/",
-        "qualitys" : ["low", "middle", "heigh"],
+        "qualitys" : [
+            {
+                "type" : "middle",
+                "name" : "Middels"
+            }
+        ],
         "defaultChannel" : "JAZZ",
         "channels" : [
 
@@ -13,6 +18,7 @@
                 "website" : "http://www.nrk.no/p1/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-p1-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-p1-128"
                 }
@@ -24,6 +30,7 @@
                 "website" : "http://www.nrk.no/p2/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-p2-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-p2-128"
                 }
@@ -35,6 +42,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-petre-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-petre-128"
                 }
@@ -46,6 +54,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-mpetre-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-mpetre-128"
                 }
@@ -57,6 +66,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no:80/nrk-super-128.ogg",
                         "mp3" : "http://radio.hiof.no:80/nrk-super-128"
                 }
@@ -68,6 +78,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-alltid-nyheter-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-alltid-nyheter-128"
                 }
@@ -79,6 +90,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no:80/nrk-sami-radio-128.ogg",
                         "mp3" : "http://radio.hiof.no:80/nrk-sami-radio-128"
                 }
@@ -90,6 +102,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-alltid-klassisk-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-alltid-klassisk-128"
                 }
@@ -101,6 +114,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-jazz-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-jazz-128"
                 }
@@ -112,6 +126,7 @@
                 "website" : "http://www.nrk.no/",
                 "logo" : "",
                 "middle" : {
+                        "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-sport-128.ogg",
                         "mp3" : "http://radio.hiof.no/nrk-sport-128"
                 }
