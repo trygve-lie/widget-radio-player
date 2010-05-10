@@ -91,7 +91,9 @@ body{
     left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
     width: 40px;
     height: 40px;
-    background-color: green;
+    background-image: url(../gfx/default/button-pause.png);
+    background-position: top left;
+	background-repeat: no-repeat;
     cursor: pointer;
 }
 
@@ -101,7 +103,9 @@ body{
     left: 210px;    /* 255px + 40px = 295px = 5px left margin  */
     width: 40px;
     height: 40px;
-    background-color: red;
+    background-image: url(../gfx/default/button-stop.png);
+    background-position: top left;
+	background-repeat: no-repeat;
     cursor: pointer;
 }
 
