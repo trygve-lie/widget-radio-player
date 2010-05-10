@@ -10,6 +10,11 @@
                 "name" : "Middels"
             }
         ],
+        "updater" : {
+            "latest" : "1.0.0",
+            "message" : "A new version is available",
+            "download" : ""
+        },
         "defaultChannel" : "P1",
         "channels" : [
 

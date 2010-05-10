@@ -1,5 +1,7 @@
 var player = {
 
+    VERSION:"1.0.0",
+
     stationDataUrl:location.protocol + "//" + location.host + "/feeds/nrk.json",
     stationData:undefined,
     stationPickerVisible:false,
