@@ -1,21 +1,23 @@
 {
     "station" : {
         "name" : "NRK",
-        "fullname" : "Norsk Riks Kringkasting",
+        "fullname" : "Norsk Rikskringkasting AS",
         "website" : "http://www.nrk.no/",
+        "newsfeed" : "http://www.nrk.no/nyheiter/siste.rss",
         "qualitys" : [
             {
                 "type" : "middle",
                 "name" : "Middels"
             }
         ],
-        "defaultChannel" : "JAZZ",
+        "defaultChannel" : "P1",
         "channels" : [
 
             {
                 "name" : "P1",
                 "channel" : "NRK P1",
                 "website" : "http://www.nrk.no/p1/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -28,6 +30,7 @@
                 "name" : "P2",
                 "channel" : "NRK P2",
                 "website" : "http://www.nrk.no/p2/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -39,7 +42,8 @@
             {
                 "name" : "P3",
                 "channel" : "NRK P3",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/p3/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -51,7 +55,8 @@
             {
                 "name" : "MP3",
                 "channel" : "NRK mP3",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/mp3/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -63,7 +68,8 @@
             {
                 "name" : "SUPER",
                 "channel" : "NRK Super",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrksuper.no/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -75,7 +81,8 @@
             {
                 "name" : "ALLTIDNYHETER",
                 "channel" : "NRK Alltid Nyheter",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/alltidnyheter/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -87,7 +94,8 @@
             {
                 "name" : "SAMI",
                 "channel" : "NRK Sami Radio",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/samiradio/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -99,7 +107,8 @@
             {
                 "name" : "KLASSISK",
                 "channel" : "NRK Alltid Klassisk",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/alltidklassisk/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -111,7 +120,8 @@
             {
                 "name" : "JAZZ",
                 "channel" : "NRK Jazz",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/jazz/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
@@ -123,7 +133,8 @@
             {
                 "name" : "SPORT",
                 "channel" : "NRK Sport",
-                "website" : "http://www.nrk.no/",
+                "website" : "http://www.nrk.no/sport/",
+                "schedule" : "",
                 "logo" : "",
                 "middle" : {
                         "type" : "middle",
