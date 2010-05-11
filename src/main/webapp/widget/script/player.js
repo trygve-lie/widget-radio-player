@@ -1,6 +1,6 @@
 var player = {
 
-    VERSION:"1.0.0",
+    VERSION:"1.0.0-ALFA",
 
     stationDataUrl:location.protocol + "//" + location.host + "/feeds/nrk.json",
     stationData:undefined,
@@ -81,6 +81,7 @@ var player = {
             ready: function () {
                 this.element.jPlayer("setFile", station.middle.mp3, station.middle.ogg);
             },
+            swfPath: "script/jplayer-1.1.1/",
             nativeSupport: true,
             volume: 60,
             oggSupport: true,

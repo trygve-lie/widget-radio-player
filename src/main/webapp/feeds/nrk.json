@@ -11,7 +11,7 @@
             }
         ],
         "updater" : {
-            "latest" : "1.0.0",
+            "latest" : "1.0.0-ALFA",
             "message" : "A new version is available",
             "download" : ""
         },
