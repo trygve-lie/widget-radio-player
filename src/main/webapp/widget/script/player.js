@@ -40,8 +40,8 @@ var player = {
 
         var channels = jQuery('#stationPicker .channelLogo');
         if(channels.length > player.stationPickerPagingOffset.end){
-            jQuery(channels[player.stationPickerPagingOffset.start]).hide('normal');
-            jQuery(channels[player.stationPickerPagingOffset.end]).show('normal');
+            jQuery(channels[player.stationPickerPagingOffset.start]).hide('fast');
+            jQuery(channels[player.stationPickerPagingOffset.end]).show('fast');
 
             player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start + 1;
             player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end + 1;
@@ -57,8 +57,8 @@ var player = {
             player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start - 1;
             player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end - 1;
 
-            jQuery(channels[player.stationPickerPagingOffset.end]).hide('normal');
-            jQuery(channels[player.stationPickerPagingOffset.start]).show('normal');
+            jQuery(channels[player.stationPickerPagingOffset.end]).hide('fast');
+            jQuery(channels[player.stationPickerPagingOffset.start]).show('fast');
         }
 
     },
@@ -68,7 +68,6 @@ var player = {
 
         // Button for paging to the left
         jQuery('<div> </div>').addClass('paginationLeft')
-                .text('<')
                 .click(player.pageLeft)
                 .appendTo('#stationPicker');
 
@@ -95,7 +94,6 @@ var player = {
 
         // Button for paging to the right
         jQuery('<div> </div>').addClass('paginationRight')
-                .text('>')
                 .click(player.pageRight)
                 .appendTo('#stationPicker');
 

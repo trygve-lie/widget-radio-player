@@ -29,6 +29,9 @@ body{
 }
 
 .default #stationPicker{
+    background-image: url(../gfx/default/background-controls.jpg);
+    background-position: top left;
+	background-repeat: no-repeat;
     position:absolute;
     top: 0;
     left: 0;
@@ -45,21 +48,26 @@ body{
     margin-left: 5px;
     width: 120px;
     height: 56px;
-    /* background-color: #fff; */
     color: #000;
     cursor: pointer;
 }
 
+.default #stationPicker .channelLogo:hover{
+    background-color: #dddbdb;
+    opacity: 0.5;
+}
+
 .default #stationPicker .paginationLeft,
-.default #stationPicker .paginationRight{
+.default #stationPicker .paginationRight{    
+    background-image: url(../gfx/default/button-paging.png);
+    background-position: top left;
+	background-repeat: no-repeat;
     float: left;
     margin-top: 5px;
     margin-left: 5px;
     width: 15px;
     height: 56px;
-    color: #000;
     cursor: pointer;
-    background-color: #fff;
 }
 
 .default #stationPicker .paginationRight{
