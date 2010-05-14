@@ -2,10 +2,10 @@ var player = {
 
     VERSION:"1.0.0-ALFA",
 
-    stationDataUrl:location.protocol + "//" + location.host + "/feeds/nrk.json",
+    stationDataUrl:location.protocol + "//" + location.host + "/feeds/nrk/feed.json",
     stationData:undefined,
     stationPickerVisible:false,
-    stationPickerPagingOffset:{'start':0,'end':3},
+    stationPickerPagingOffset:{'start':0,'end':2},
 
 
     init:function(){
@@ -76,14 +76,16 @@ var player = {
         for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
 
             var display = 'block';
-            if(i > 2){
+            if(i > (player.stationPickerPagingOffset.end - 1)){
                 display = 'none';
             }
 
             var chan = player.stationData.station.channels[i];
 
-            jQuery('<div> </div>').text(chan.channel)
-                    .attr('title', chan.channel)
+            jQuery('<img/>').attr({
+                                    src : location.protocol + "//" + location.host + "/feeds/nrk/" + chan.logo,
+                                    title : chan.channel
+                                  })
                                  .bind('click', chan, player.changeChannel)
                                  .bind('click', player.toggleStationPicker)
                                  .addClass('channelLogo')

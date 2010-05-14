@@ -23,7 +23,7 @@
                 "channel" : "NRK P1",
                 "website" : "http://www.nrk.no/p1/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_p1.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-p1-128.ogg",
@@ -36,7 +36,7 @@
                 "channel" : "NRK P2",
                 "website" : "http://www.nrk.no/p2/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_p2.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-p2-128.ogg",
@@ -49,7 +49,7 @@
                 "channel" : "NRK P3",
                 "website" : "http://www.nrk.no/p3/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_p3.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-petre-128.ogg",
@@ -62,7 +62,7 @@
                 "channel" : "NRK mP3",
                 "website" : "http://www.nrk.no/mp3/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_mp3.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-mpetre-128.ogg",
@@ -75,7 +75,7 @@
                 "channel" : "NRK Super",
                 "website" : "http://www.nrksuper.no/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_super.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no:80/nrk-super-128.ogg",
@@ -88,7 +88,7 @@
                 "channel" : "NRK Alltid Nyheter",
                 "website" : "http://www.nrk.no/alltidnyheter/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_alltidnyheter.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-alltid-nyheter-128.ogg",
@@ -101,7 +101,7 @@
                 "channel" : "NRK Sami Radio",
                 "website" : "http://www.nrk.no/samiradio/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_samiradio.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no:80/nrk-sami-radio-128.ogg",
@@ -114,7 +114,7 @@
                 "channel" : "NRK Alltid Klassisk",
                 "website" : "http://www.nrk.no/alltidklassisk/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_klassisk.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-alltid-klassisk-128.ogg",
@@ -127,7 +127,7 @@
                 "channel" : "NRK Jazz",
                 "website" : "http://www.nrk.no/jazz/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_jazz.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-jazz-128.ogg",
@@ -140,7 +140,7 @@
                 "channel" : "NRK Sport",
                 "website" : "http://www.nrk.no/sport/",
                 "schedule" : "",
-                "logo" : "",
+                "logo" : "gfx/nrk_sport.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-sport-128.ogg",
