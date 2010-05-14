@@ -53,6 +53,7 @@ body{
     height: 56px;
     color: #000;
     cursor: pointer;
+    border-radius: 6pt 6pt;
 }
 
 .default #stationPicker .channelLogo:hover{
