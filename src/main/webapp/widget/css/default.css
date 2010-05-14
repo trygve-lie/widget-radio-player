@@ -15,11 +15,8 @@ body{
     background-color: #999;
 }
 
-#nrk-player{
+.default{
     background-color: #ccc;
-    background-image: url(../gfx/default/background.png);
-    background-position: top left;
-	background-repeat: no-repeat;
     width: 300px;
     height: 120px;
     overflow: hidden;
@@ -31,7 +28,7 @@ body{
     -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
 }
 
-#nrk-player #stationPicker{
+.default #stationPicker{
     position:absolute;
     top: 0;
     left: 0;
@@ -43,7 +40,7 @@ body{
     color: #fff;
 }
 
-#nrk-player #stationPicker .channelLogo{
+.default #stationPicker .channelLogo{
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -54,8 +51,8 @@ body{
     cursor: pointer;
 }
 
-#nrk-player #stationPicker .paginationLeft,
-#nrk-player #stationPicker .paginationRight{
+.default #stationPicker .paginationLeft,
+.default #stationPicker .paginationRight{
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -66,13 +63,13 @@ body{
     background-color: #fff;
 }
 
-#nrk-player #stationPicker .paginationRight{
+.default #stationPicker .paginationRight{
     float: right;
     margin-right: 5px;
 }
 
 
-#nrk-player #display{
+.default #display{
     height: 66px;
     background-image: url(../gfx/default/background-controls.jpg);
     background-position: top left;
@@ -83,7 +80,7 @@ body{
     font-size: 24px;
 }
 
-#nrk-player #toggleStationPicker{
+.default #toggleStationPicker{
     font-family: Arial;
     font-size: 11px;
     cursor: pointer;
@@ -92,7 +89,7 @@ body{
 /**
  * Play button
  */
-#nrk-player #play{
+.default #play{
     position: absolute;
     top: 75px;
     left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -105,7 +102,7 @@ body{
 }
 
 
-#nrk-player #pause{
+.default #pause{
     position: absolute;
     top: 75px;
     left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -117,7 +114,7 @@ body{
     cursor: pointer;
 }
 
-#nrk-player #stop{
+.default #stop{
     position: absolute;
     top: 75px;
     left: 210px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -130,7 +127,7 @@ body{
 }
 
 
-#nrk-player #volumeMin{
+.default #volumeMin{
     position: absolute;
     top: 90px;
     left: 35px;
@@ -142,7 +139,7 @@ body{
     cursor: pointer;
 }
 
-#nrk-player #volume{
+.default #volume{
     position: absolute;
     top: 100px;
     left: 60px;
@@ -152,7 +149,7 @@ body{
     cursor: pointer;
 }
 
-#nrk-player #volumeMax{
+.default #volumeMax{
     position: absolute;
     top: 90px;
     left: 105px;
