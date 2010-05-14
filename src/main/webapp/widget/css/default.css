@@ -86,9 +86,25 @@ body{
 	background-repeat: no-repeat;
     color: #fff;
     border-bottom: solid 4px #000;
+}
+
+
+.default #currentChannel{
+    display: block;
+    float: left;
+    width: 120px;
+    height: 56px;
+}
+
+
+.default #duration{
+    display: block;
+    float: left;
+    width: 110px;
     font-family: 'RadiolandRegular',Verdana,sans-serif;
     font-size: 24px;
 }
+
 
 .default #toggleStationPicker{
     background-image: url(../gfx/default/button-changeStations.png);

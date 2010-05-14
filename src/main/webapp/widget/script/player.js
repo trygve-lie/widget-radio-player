@@ -109,10 +109,10 @@ var player = {
 
     toggleStationPicker:function(){
         if(player.stationPickerVisible){
-            jQuery('#stationPicker').slideUp('slow');
+            jQuery('#stationPicker').slideUp('normal');
             player.stationPickerVisible = false;
         }else{
-            jQuery('#stationPicker').slideDown('slow');
+            jQuery('#stationPicker').slideDown('normal');
             player.stationPickerVisible = true;
         }
     },
@@ -121,6 +121,7 @@ var player = {
     changeChannel:function(event){
         jQuery("#player").jPlayer( "clearFile" );
         jQuery("#player").jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
+        player.setChannelInDisplay(event.data);
 
         // If player is playing while channel change; start playing new channel imidiatly
         if(player.isPlaying){
@@ -129,14 +130,21 @@ var player = {
     },
 
 
+    setChannelInDisplay:function(channel){
+        jQuery('#currentChannel').attr({href : channel.website, title : 'Open channels homepage'});
+        jQuery('#currentChannel img').attr({src : location.protocol + "//" + location.host + "/feeds/nrk/" + channel.picker_logo});
+    },
+
+
     setupPlayer:function(){
 
-        // Find default channel
+        // Find and set default channel
         var station = player.getDefaultChannel();
+        player.setChannelInDisplay(station);
 
         // Construct channel picker
         player.setStationSelection();
-        jQuery('#toggleStationPicker').click(player.toggleStationPicker);
+        jQuery('#toggleStationPicker').attr({title : 'Change station'}).click(player.toggleStationPicker);
 
         // Cache duration element to prevent reading from DOM on every update.
         var duration = jQuery("#duration");
