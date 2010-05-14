@@ -17,6 +17,9 @@ body{
 
 #nrk-player{
     background-color: #ccc;
+    background-image: url(../gfx/default/background.png);
+    background-position: top left;
+	background-repeat: no-repeat;
     width: 300px;
     height: 120px;
     overflow: hidden;
@@ -40,15 +43,32 @@ body{
     color: #fff;
 }
 
-#nrk-player #stationPicker div{
+#nrk-player #stationPicker .channelLogo{
     float: left;
     margin-top: 5px;
     margin-left: 5px;
-    width: 28px;
-    height: 28px;
-    background-color: #ffffff;
+    width: 80px;
+    height: 56px;
+    background-color: #fff;
     color: #000;
     cursor: pointer;
+}
+
+#nrk-player #stationPicker .paginationLeft,
+#nrk-player #stationPicker .paginationRight{
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 15px;
+    height: 56px;
+    color: #000;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+#nrk-player #stationPicker .paginationRight{
+    float: right;
+    margin-right: 5px;
 }
 
 
@@ -143,4 +163,3 @@ body{
 	background-repeat: no-repeat;
     cursor: pointer;
 }
-

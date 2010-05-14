@@ -5,6 +5,7 @@ var player = {
     stationDataUrl:location.protocol + "//" + location.host + "/feeds/nrk.json",
     stationData:undefined,
     stationPickerVisible:false,
+    stationPickerPagingOffset:{'start':0,'end':3},
 
 
     init:function(){
@@ -25,7 +26,7 @@ var player = {
     },
 
 
-    getDefaultStation:function(){
+    getDefaultChannel:function(){
         var c = player.stationData.station.channels.length;
         while(c--){
             if(player.stationData.station.channels[c].name === player.stationData.station.defaultChannel){
@@ -34,18 +35,68 @@ var player = {
         }
     },
 
-    
-    setStationSelection:function(){
-        var c = player.stationData.station.channels.length;
-        while(c--){
 
-            var chan = player.stationData.station.channels[c];
-            jQuery('<div></div>').text(c)
-                                 .attr('title', chan.channel)
+    pageLeft:function(){
+
+        var channels = jQuery('#stationPicker .channelLogo');
+        if(channels.length > player.stationPickerPagingOffset.end){
+            jQuery(channels[player.stationPickerPagingOffset.start]).hide('normal');
+            jQuery(channels[player.stationPickerPagingOffset.end]).show('normal');
+
+            player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start + 1;
+            player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end + 1;
+        }
+
+    },
+
+
+    pageRight:function(){
+
+        var channels = jQuery('#stationPicker .channelLogo');
+        if(0 < player.stationPickerPagingOffset.start){
+            player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start - 1;
+            player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end - 1;
+
+            jQuery(channels[player.stationPickerPagingOffset.end]).hide('normal');
+            jQuery(channels[player.stationPickerPagingOffset.start]).show('normal');
+        }
+
+    },
+
+
+    setStationSelection:function(){
+
+        // Button for paging to the left
+        jQuery('<div> </div>').addClass('paginationLeft')
+                .text('<')
+                .click(player.pageLeft)
+                .appendTo('#stationPicker');
+
+        // Each station
+        for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
+
+            var display = 'block';
+            if(i > 2){
+                display = 'none';
+            }
+
+            var chan = player.stationData.station.channels[i];
+
+            jQuery('<div> </div>').text(chan.channel)
+                    .attr('title', chan.channel)
                                  .bind('click', chan, player.changeChannel)
                                  .bind('click', player.toggleStationPicker)
+                                 .addClass('channelLogo')
+                                 .css('display', display)
                                  .appendTo('#stationPicker');
         }
+
+        // Button for paging to the right
+        jQuery('<div> </div>').addClass('paginationRight')
+                .text('>')
+                .click(player.pageRight)
+                .appendTo('#stationPicker');
+
     },
 
 
@@ -68,7 +119,7 @@ var player = {
 
     setupPlayer:function(){
 
-        var station = player.getDefaultStation();
+        var station = player.getDefaultChannel();
 
         player.setStationSelection();
 
