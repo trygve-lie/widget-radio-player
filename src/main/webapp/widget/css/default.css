@@ -13,6 +13,10 @@
 
 body{
     background-color: #999;
+    font-family: Verdana,sans-serif;
+    font-style:normal;
+    font-variant:normal;
+    font-weight:normal;
 }
 
 .default{
@@ -35,7 +39,6 @@ body{
     position:absolute;
     top: 0;
     left: 0;
-    /*background-color: #000;*/
     display: none;
     width: 100%;
     height: 66px;
@@ -83,13 +86,16 @@ body{
 	background-repeat: no-repeat;
     color: #fff;
     border-bottom: solid 4px #000;
-    font-family: 'RadiolandRegular', Arial;
+    font-family: 'RadiolandRegular',Verdana,sans-serif;
     font-size: 24px;
 }
 
 .default #toggleStationPicker{
-    font-family: Arial;
-    font-size: 11px;
+    background-image: url(../gfx/default/button-changeStations.png);
+    background-position: top left;
+	background-repeat: no-repeat;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
 
@@ -166,4 +172,18 @@ body{
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
+}
+
+.default #error{
+    display: none;
+    position: absolute;
+    background-color: #000;
+    width: 270px;
+    height: 90px;
+    padding: 10px 10px 10px 10px;
+    top: 5px;
+    left: 5px;
+    color: #fff;
+    text-align: center;
+    font-size: 0.8em;
 }

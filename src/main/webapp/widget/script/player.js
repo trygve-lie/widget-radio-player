@@ -6,6 +6,7 @@ var player = {
     stationData:undefined,
     stationPickerVisible:false,
     stationPickerPagingOffset:{'start':0,'end':2},
+    isPlaying:false,
 
 
     init:function(){
@@ -21,6 +22,11 @@ var player = {
             success: function(data, textStatus){
                 player.stationData = data;
                 player.setupPlayer();
+            },
+            error: function(){
+                jQuery('#error').css('display', 'block');
+                jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
+                console.log('Radio Player could not read: ' + player.stationDataUrl);
             }
         });
     },
@@ -53,6 +59,7 @@ var player = {
     pageRight:function(){
 
         var channels = jQuery('#stationPicker .channelLogo');
+
         if(0 < player.stationPickerPagingOffset.start){
             player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start - 1;
             player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end - 1;
@@ -82,7 +89,7 @@ var player = {
             var chan = player.stationData.station.channels[i];
 
             jQuery('<img/>').attr({
-                                    src : location.protocol + "//" + location.host + "/feeds/nrk/" + chan.logo,
+                                    src : location.protocol + "//" + location.host + "/feeds/nrk/" + chan.picker_logo,
                                     title : chan.channel
                                   })
                                  .bind('click', chan, player.changeChannel)
@@ -119,15 +126,17 @@ var player = {
 
     setupPlayer:function(){
 
+        // Find default channel
         var station = player.getDefaultChannel();
 
+        // Construct channel picker
         player.setStationSelection();
-
         jQuery('#toggleStationPicker').click(player.toggleStationPicker);
 
-        // For performance.
+        // Cache duration element to prevent reading from DOM on every update.
         var jpPlayInfo = jQuery("#duration");
 
+        // Setup jPlayer
         jQuery("#player").jPlayer({
             ready: function () {
                 this.element.jPlayer("setFile", station.middle.mp3, station.middle.ogg);
@@ -152,6 +161,21 @@ var player = {
         jQuery.jPlayer.timeFormat.sepHour = ":";
         jQuery.jPlayer.timeFormat.sepMin = ":";
         jQuery.jPlayer.timeFormat.sepSec = "";
+
+        
+        // jPlayer is missing callback function on start / stop functions :-(.
+        // Add some extra click events to do extra stuff when starting / stoping player
+        jQuery('#play').click(function(){
+            player.isPlaying = true;
+        });
+
+        jQuery('#pause').click(function(){
+            player.isPlaying = false;
+        });
+
+        jQuery('#stop').click(function(){
+            player.isPlaying = false;
+        });
 
     }
 
