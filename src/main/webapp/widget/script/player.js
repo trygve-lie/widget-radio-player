@@ -119,8 +119,13 @@ var player = {
 
 
     changeChannel:function(event){
-        $("#player").jPlayer( "clearFile" );
-        $("#player").jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
+        jQuery("#player").jPlayer( "clearFile" );
+        jQuery("#player").jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
+
+        // If player is playing while channel change; start playing new channel imidiatly
+        if(player.isPlaying){
+            jQuery("#player").jPlayer("play");
+        }
     },
 
 
@@ -134,7 +139,7 @@ var player = {
         jQuery('#toggleStationPicker').click(player.toggleStationPicker);
 
         // Cache duration element to prevent reading from DOM on every update.
-        var jpPlayInfo = jQuery("#duration");
+        var duration = jQuery("#duration");
 
         // Setup jPlayer
         jQuery("#player").jPlayer({
@@ -154,7 +159,7 @@ var player = {
         .jPlayer("cssId", "volumeMax", "volumeMax")
         .jPlayer("cssId", "volumeBar", "volume")
         .jPlayer("onProgressChange", function(lp,ppr,ppa,pt,tt) {
-             jpPlayInfo.text(jQuery.jPlayer.convertTime(pt));
+             duration.text(jQuery.jPlayer.convertTime(pt));
         });
 
         jQuery.jPlayer.timeFormat.showHour = true;
