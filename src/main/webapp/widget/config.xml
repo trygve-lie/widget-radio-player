@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget defaultmode="application" network="public private">
-    <widgetname>NRK Radio</widgetname>
-    <description>NRK - Radio Player</description>
+    <widgetname>Radio Player</widgetname>
+    <description>Radio Player</description>
     <width>300</width>
     <height>120</height>
     <icon>gfx/icon/icon_128.png</icon>
@@ -15,7 +15,7 @@
     </author>
     <id>
         <host>radio.trygve-lie.com</host>
-        <name>nrk</name>
+        <name>radio-player</name>
         <revised>2010-05</revised>
     </id>
 </widget>
