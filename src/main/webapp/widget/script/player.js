@@ -19,11 +19,11 @@ var player = {
             url: player.stationDataUrl,
             dataType: 'json',
             data: null,
-            success: function(data, textStatus){
+            success: function readStationDataSuccess(data, textStatus){
                 player.stationData = data;
                 player.setupPlayer();
             },
-            error: function(){
+            error: function readStationDataError(data){
                 jQuery('#error').css('display', 'block');
                 jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
                 console.log('Radio Player could not read: ' + player.stationDataUrl);
@@ -151,7 +151,7 @@ var player = {
 
         // Setup jPlayer
         jQuery("#player").jPlayer({
-            ready: function () {
+            ready: function setPlayerFiles() {
                 this.element.jPlayer("setFile", station.middle.mp3, station.middle.ogg);
             },
             swfPath: "script/jplayer-1.1.1/",
@@ -166,7 +166,7 @@ var player = {
         .jPlayer("cssId", "volumeMin", "volumeMin")
         .jPlayer("cssId", "volumeMax", "volumeMax")
         .jPlayer("cssId", "volumeBar", "volume")
-        .jPlayer("onProgressChange", function(lp,ppr,ppa,pt,tt) {
+        .jPlayer("onProgressChange", function updateDuration(lp,ppr,ppa,pt,tt) {
              duration.text(jQuery.jPlayer.convertTime(pt));
         });
 
@@ -178,15 +178,15 @@ var player = {
         
         // jPlayer is missing callback function on start / stop functions :-(.
         // Add some extra click events to do extra stuff when starting / stoping player
-        jQuery('#play').click(function(){
+        jQuery('#play').click(function setIsPlaying(){
             player.isPlaying = true;
         });
 
-        jQuery('#pause').click(function(){
+        jQuery('#pause').click(function setIsPlaying(){
             player.isPlaying = false;
         });
 
-        jQuery('#stop').click(function(){
+        jQuery('#stop').click(function setIsPlaying(){
             player.isPlaying = false;
         });
 
