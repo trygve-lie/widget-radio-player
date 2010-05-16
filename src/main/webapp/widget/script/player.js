@@ -12,6 +12,11 @@ var player = {
     isPlaying:false,
     isWidget:false,
 
+    elPlayer:undefined,
+    elDuration:undefined,
+    elChannelPicker:undefined,
+    elCurrentChannel:undefined,
+
 
 
     // Constructor function run at construction of document
@@ -22,7 +27,25 @@ var player = {
         }
 
         player.getStationFeedFromServer();
+    },
 
+
+
+    // Get elements in DOM
+
+    getDOMElements:function(){
+
+        // Player element - Holds the jPlayer
+        player.elPlayer = jQuery("#player");
+
+        // Time duration element
+        player.elDuration = jQuery("#duration");
+
+        // Channel picker window
+        player.elChannelPicker = jQuery('#channelPicker');
+
+        // Current selected channel in the display
+        player.elCurrentChannel = jQuery('#currentChannel');
     },
 
 
@@ -30,6 +53,8 @@ var player = {
     // Set misc event handlers on DOM elements
 
     setDOMEventHandlers:function(){
+
+        // TODO: Reduce DOM access
 
         // Channel picker - Button for opening the channel picker
         jQuery('#displayChannelPicker').attr({title : 'Change station'}).click(player.toggleChannelPicker);
@@ -39,6 +64,20 @@ var player = {
 
         // Channel picker - Button for paging to the right
         jQuery('#channelPicker .paginationRight').click(player.pageRight);
+
+        // jPlayer is missing callback function on start / stop functions :-(.
+        // Deal with continuous playing when user select channel in channel picker
+        jQuery('#play').click(function setIsPlaying(){
+            player.isPlaying = true;
+        });
+
+        jQuery('#pause').click(function setIsPlaying(){
+            player.isPlaying = false;
+        });
+
+        jQuery('#stop').click(function setIsPlaying(){
+            player.isPlaying = false;
+        });
     },
 
 
@@ -57,7 +96,7 @@ var player = {
 
 
 
-    // Action to be taken when a read of a station feed is successfull
+    // Action to be taken when read of a station feed is successfull
 
     readStationDataSuccess:function(data, textStatus){
         player.stationData = data;
@@ -66,9 +105,11 @@ var player = {
 
 
 
-    // Action to be taken when a read of a station feed fails
+    // Action to be taken when read of a station feed fails
 
     readStationDataError:function(data){
+
+        // TODO: Reduce DOM access
         jQuery('#error').css('display', 'block');
         jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
         console.log('Radio Player could not read: ' + player.stationBaseUrl + player.station + "/feed.json");
@@ -107,9 +148,12 @@ var player = {
     },
 
 
+    // TODO: Rename function
     pageLeft:function(){
 
-        var channels = jQuery('#channelPicker .channelLogo');
+        // TODO: Reduce DOM access
+        var channels = jQuery('#channels .channelLogo');
+
         if(channels.length > player.channelPickerPagingOffset.end){
             jQuery(channels[player.channelPickerPagingOffset.start]).hide('fast');
             jQuery(channels[player.channelPickerPagingOffset.end]).show('fast');
@@ -121,9 +165,11 @@ var player = {
     },
 
 
+    // TODO: Rename function
     pageRight:function(){
 
-        var channels = jQuery('#channelPicker .channelLogo');
+        // TODO: Reduce DOM access
+        var channels = jQuery('#channels .channelLogo');
 
         if(0 < player.channelPickerPagingOffset.start){
             player.channelPickerPagingOffset.start = player.channelPickerPagingOffset.start - 1;
@@ -154,30 +200,30 @@ var player = {
                                  .bind('click', player.toggleChannelPicker)
                                  .addClass('channelLogo')
                                  .css('display', display)
-                                 .appendTo('#channels');
+                                 .appendTo('#channels');     // TODO: Reduce DOM access
         }
     },
 
 
     toggleChannelPicker:function(){
         if(player.channelPickerVisible){
-            jQuery('#channelPicker').slideUp('normal');
+            player.elChannelPicker.slideUp('normal');
             player.channelPickerVisible = false;
         }else{
-            jQuery('#channelPicker').slideDown('normal');
+            player.elChannelPicker.slideDown('normal');
             player.channelPickerVisible = true;
         }
     },
 
 
     changeChannel:function(event){
-        jQuery("#player").jPlayer( "clearFile" );
-        jQuery("#player").jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
+        player.elPlayer.jPlayer("clearFile");
+        player.elPlayer.jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
         player.setChannelInDisplay(event.data);
 
         // If player is playing while channel change; start playing new channel imidiatly
         if(player.isPlaying){
-            jQuery("#player").jPlayer("play");
+            player.elPlayer.jPlayer("play");
         }
 
         // If widget mode, store last selected channel in preference storage
@@ -188,7 +234,9 @@ var player = {
 
 
     setChannelInDisplay:function(channel){
-        jQuery('#currentChannel').attr({href : channel.website, title : 'Open channels homepage'});
+        player.elCurrentChannel.attr({href : channel.website, title : 'Open channels homepage'});
+
+        // TODO: Reduce DOM access
         jQuery('#currentChannel img').attr({src : player.stationBaseUrl + player.station + channel.picker_logo});
     },
 
@@ -197,6 +245,10 @@ var player = {
 
 
     setupPlayer:function(){
+
+        // TODO: Move the 4 next function calls into constructor!
+        // Get elements in DOM
+        player.getDOMElements();
 
         // Set different evenhandles in DOM
         player.setDOMEventHandlers();
@@ -209,11 +261,10 @@ var player = {
         // Push channels in feed into channel picker
         player.putChannelsInStationFeedIntoChannelPicker();
 
-        // Cache duration element to prevent reading from DOM on every update.
-        var duration = jQuery("#duration");
 
         // Setup jPlayer
-        jQuery("#player").jPlayer({
+        // TODO: set files to undefined if feed is not awailable
+        player.elPlayer.jPlayer({
             ready: function setPlayerFiles() {
                 this.element.jPlayer("setFile", station.middle.mp3, station.middle.ogg);
             },
@@ -230,28 +281,13 @@ var player = {
         .jPlayer("cssId", "volumeMax", "volumeMax")
         .jPlayer("cssId", "volumeBar", "volume")
         .jPlayer("onProgressChange", function updateDuration(lp,ppr,ppa,pt,tt) {
-             duration.text(jQuery.jPlayer.convertTime(pt));
+             player.elDuration.text(jQuery.jPlayer.convertTime(pt));
         });
 
         jQuery.jPlayer.timeFormat.showHour = true;
         jQuery.jPlayer.timeFormat.sepHour = ":";
         jQuery.jPlayer.timeFormat.sepMin = ":";
         jQuery.jPlayer.timeFormat.sepSec = "";
-
-        
-        // jPlayer is missing callback function on start / stop functions :-(.
-        // Add some extra click events to do extra stuff when starting / stoping player
-        jQuery('#play').click(function setIsPlaying(){
-            player.isPlaying = true;
-        });
-
-        jQuery('#pause').click(function setIsPlaying(){
-            player.isPlaying = false;
-        });
-
-        jQuery('#stop').click(function setIsPlaying(){
-            player.isPlaying = false;
-        });
 
     }
 
