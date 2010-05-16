@@ -20,7 +20,25 @@ var player = {
         if(typeof widget !== 'undefined'){
             player.isWidget = true;
         }
+
         player.getStationFeedFromServer();
+
+    },
+
+
+
+    // Set misc event handlers on DOM elements
+
+    setDOMEventHandlers:function(){
+
+        // Channel picker - Button for opening the channel picker
+        jQuery('#displayChannelPicker').attr({title : 'Change station'}).click(player.toggleChannelPicker);
+
+        // Channel picker -  Button for paging to the left
+        jQuery('#channelPicker .paginationLeft').click(player.pageLeft);
+
+        // Channel picker - Button for paging to the right
+        jQuery('#channelPicker .paginationRight').click(player.pageRight);
     },
 
 
@@ -118,14 +136,7 @@ var player = {
     },
 
 
-    setStationSelection:function(){
-
-        // Button for paging to the left
-        jQuery('<div> </div>').addClass('paginationLeft')
-                .click(player.pageLeft)
-                .appendTo('#channelPicker');
-
-        // Each station
+    putChannelsInStationFeedIntoChannelPicker:function(){
         for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
 
             var display = 'block';
@@ -143,14 +154,8 @@ var player = {
                                  .bind('click', player.toggleChannelPicker)
                                  .addClass('channelLogo')
                                  .css('display', display)
-                                 .appendTo('#channelPicker');
+                                 .appendTo('#channels');
         }
-
-        // Button for paging to the right
-        jQuery('<div> </div>').addClass('paginationRight')
-                .click(player.pageRight)
-                .appendTo('#channelPicker');
-
     },
 
 
@@ -193,14 +198,16 @@ var player = {
 
     setupPlayer:function(){
 
+        // Set different evenhandles in DOM
+        player.setDOMEventHandlers();
+
         // Find and set default channel
         var channelName = player.getDefaultChannel();
         var station = player.getChannelInFeed(channelName);
         player.setChannelInDisplay(station);
 
-        // Construct channel picker
-        player.setStationSelection();
-        jQuery('#displayChannelPicker').attr({title : 'Change station'}).click(player.toggleChannelPicker);
+        // Push channels in feed into channel picker
+        player.putChannelsInStationFeedIntoChannelPicker();
 
         // Cache duration element to prevent reading from DOM on every update.
         var duration = jQuery("#duration");
