@@ -26,6 +26,12 @@ var player = {
             player.isWidget = true;
         }
 
+        player.getDOMElements();
+
+        player.setDOMEventHandlers();
+
+        player.setupPlayer();
+
         player.getStationFeedFromServer();
     },
 
@@ -97,10 +103,18 @@ var player = {
 
 
     // Action to be taken when read of a station feed is successfull
-
+    // TODO: Improve this!! To complex.
     readStationDataSuccess:function(data, textStatus){
         player.stationData = data;
-        player.setupPlayer();
+
+        // Push channels in feed into channel picker
+        player.putChannelsInStationFeedIntoChannelPicker();
+
+        var channelName = player.getDefaultChannel();
+        var station = player.getChannelInFeed(channelName);
+        player.setChannelInDisplay(station);
+
+        player.setPlayerFiles(station.middle.mp3, station.middle.ogg);
     },
 
 
@@ -148,6 +162,7 @@ var player = {
     },
 
 
+
     // TODO: Rename function
     pageLeft:function(){
 
@@ -180,6 +195,7 @@ var player = {
         }
 
     },
+
 
 
     putChannelsInStationFeedIntoChannelPicker:function(){
@@ -217,8 +233,11 @@ var player = {
 
 
     changeChannel:function(event){
-        player.elPlayer.jPlayer("clearFile");
-        player.elPlayer.jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
+        //player.elPlayer.jPlayer("clearFile");
+        //player.elPlayer.jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
+
+        player.setPlayerFiles(event.data.middle.mp3, event.data.middle.ogg);
+
         player.setChannelInDisplay(event.data);
 
         // If player is playing while channel change; start playing new channel imidiatly
@@ -241,33 +260,19 @@ var player = {
     },
 
 
+    setPlayerFiles:function(mp3, ogg) {
+        player.elPlayer.jPlayer("clearFile");
+        player.elPlayer.jPlayer("setFile", mp3, ogg);
+    },
 
 
+
+    // Set up the jPlayer
 
     setupPlayer:function(){
 
-        // TODO: Move the 4 next function calls into constructor!
-        // Get elements in DOM
-        player.getDOMElements();
-
-        // Set different evenhandles in DOM
-        player.setDOMEventHandlers();
-
-        // Find and set default channel
-        var channelName = player.getDefaultChannel();
-        var station = player.getChannelInFeed(channelName);
-        player.setChannelInDisplay(station);
-
-        // Push channels in feed into channel picker
-        player.putChannelsInStationFeedIntoChannelPicker();
-
-
-        // Setup jPlayer
-        // TODO: set files to undefined if feed is not awailable
         player.elPlayer.jPlayer({
-            ready: function setPlayerFiles() {
-                this.element.jPlayer("setFile", station.middle.mp3, station.middle.ogg);
-            },
+            ready: function playerReady(){/* Dummy, do nothing! */},
             swfPath: "script/jplayer-1.1.1/",
             nativeSupport: true,
             volume: 60,
@@ -293,4 +298,4 @@ var player = {
 
 };
 
-jQuery(document).ready(player.init());
+jQuery(document).ready(player.init);
