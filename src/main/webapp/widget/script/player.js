@@ -2,23 +2,31 @@ var player = {
 
     VERSION:"1.0.0-ALFA",
 
-    stationDataUrl:location.protocol + "//" + location.host + "/feeds/nrk/feed.json",
+    station:"nrk",
+    stationBaseUrl:"http://192.168.1.36:8080/feeds/",
+
     stationData:undefined,
     stationPickerVisible:false,
     stationPickerPagingOffset:{'start':0,'end':2},
     isPlaying:false,
 
+    isWidget:false,
+
 
     init:function(){
-        player.getStationData();
+        if(typeof widget !== 'undefined'){
+            player.isWidget = true;
+        }
+
+        player.getStationFeedFromServer();
     },
 
 
-    getStationData:function(){
+    getStationFeedFromServer:function(){
         jQuery.ajax({
-            url: player.stationDataUrl,
+            url: player.stationBaseUrl + player.station + "/feed.json",
             dataType: 'json',
-            data: null,
+            ifModified: true,
             success: function readStationDataSuccess(data, textStatus){
                 player.stationData = data;
                 player.setupPlayer();
@@ -26,16 +34,16 @@ var player = {
             error: function readStationDataError(data){
                 jQuery('#error').css('display', 'block');
                 jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
-                console.log('Radio Player could not read: ' + player.stationDataUrl);
+                console.log('Radio Player could not read: ' + player.stationBaseUrl + player.station + "/feed.json");
             }
         });
     },
 
 
-    getDefaultChannel:function(){
+    getChannelInFeed:function(name){
         var c = player.stationData.station.channels.length;
         while(c--){
-            if(player.stationData.station.channels[c].name === player.stationData.station.defaultChannel){
+            if(player.stationData.station.channels[c].name === name){
                 return player.stationData.station.channels[c];
             }
         }
@@ -89,7 +97,7 @@ var player = {
             var chan = player.stationData.station.channels[i];
 
             jQuery('<img/>').attr({
-                                    src : location.protocol + "//" + location.host + "/feeds/nrk/" + chan.picker_logo,
+                                    src : player.stationBaseUrl + player.station + chan.picker_logo,
                                     title : chan.channel
                                   })
                                  .bind('click', chan, player.changeChannel)
@@ -127,19 +135,40 @@ var player = {
         if(player.isPlaying){
             jQuery("#player").jPlayer("play");
         }
+
+        // If widget mode, store last selected channel in preference storage
+        if(player.isWidget){
+            widget.setPreferenceForKey(event.data.name,'lastSelectedChannel');
+        }
     },
 
 
     setChannelInDisplay:function(channel){
         jQuery('#currentChannel').attr({href : channel.website, title : 'Open channels homepage'});
-        jQuery('#currentChannel img').attr({src : location.protocol + "//" + location.host + "/feeds/nrk/" + channel.picker_logo});
+        jQuery('#currentChannel img').attr({src : player.stationBaseUrl + player.station + channel.picker_logo});
+    },
+
+
+    getDefaultChannel:function(){
+        var channelName = '';
+
+        if(player.isWidget){
+            channelName = widget.preferenceForKey('lastSelectedChannel');
+        }
+
+        if(channelName === ''){
+            channelName = player.stationData.station.defaultChannel;
+        }
+
+        return channelName;
     },
 
 
     setupPlayer:function(){
 
         // Find and set default channel
-        var station = player.getDefaultChannel();
+        var channelName = player.getDefaultChannel();
+        var station = player.getChannelInFeed(channelName);
         player.setChannelInDisplay(station);
 
         // Construct channel picker
