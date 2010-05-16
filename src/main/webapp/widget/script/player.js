@@ -2,16 +2,19 @@ var player = {
 
     VERSION:"1.0.0-ALFA",
 
-    station:"nrk",
     stationBaseUrl:"http://192.168.1.36:8080/feeds/",
-
     stationData:undefined,
-    stationPickerVisible:false,
-    stationPickerPagingOffset:{'start':0,'end':2},
-    isPlaying:false,
+    station:"nrk",
 
+    channelPickerVisible:false,
+    channelPickerPagingOffset:{'start':0,'end':2},
+
+    isPlaying:false,
     isWidget:false,
 
+
+
+    // Constructor function run at construction of document
 
     init:function(){
         if(typeof widget !== 'undefined'){
@@ -20,6 +23,9 @@ var player = {
         player.getStationFeedFromServer();
     },
 
+
+
+    // Read a station feed from the server
 
     getStationFeedFromServer:function(){
         jQuery.ajax({
@@ -32,11 +38,17 @@ var player = {
     },
 
 
+
+    // Action to be taken when a read of a station feed is successfull
+
     readStationDataSuccess:function(data, textStatus){
         player.stationData = data;
         player.setupPlayer();
     },
 
+
+
+    // Action to be taken when a read of a station feed fails
 
     readStationDataError:function(data){
         jQuery('#error').css('display', 'block');
@@ -44,6 +56,9 @@ var player = {
         console.log('Radio Player could not read: ' + player.stationBaseUrl + player.station + "/feed.json");
     },
 
+
+
+    // Get a channel by it's name in a station feed
 
     getChannelInFeed:function(name){
         var c = player.stationData.station.channels.length;
@@ -55,15 +70,34 @@ var player = {
     },
 
 
+
+    // Get the channel to be presented to the user by start up of the player.
+    // If in widget mode, the last played station are presented. If not, the default in the feed should be used.
+
+    getDefaultChannel:function(){
+        var channelName = '';
+
+        if(player.isWidget){
+            channelName = widget.preferenceForKey('lastSelectedChannel');
+        }
+
+        if(channelName === ''){
+            channelName = player.stationData.station.defaultChannel;
+        }
+
+        return channelName;
+    },
+
+
     pageLeft:function(){
 
-        var channels = jQuery('#stationPicker .channelLogo');
-        if(channels.length > player.stationPickerPagingOffset.end){
-            jQuery(channels[player.stationPickerPagingOffset.start]).hide('fast');
-            jQuery(channels[player.stationPickerPagingOffset.end]).show('fast');
+        var channels = jQuery('#channelPicker .channelLogo');
+        if(channels.length > player.channelPickerPagingOffset.end){
+            jQuery(channels[player.channelPickerPagingOffset.start]).hide('fast');
+            jQuery(channels[player.channelPickerPagingOffset.end]).show('fast');
 
-            player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start + 1;
-            player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end + 1;
+            player.channelPickerPagingOffset.start = player.channelPickerPagingOffset.start + 1;
+            player.channelPickerPagingOffset.end = player.channelPickerPagingOffset.end + 1;
         }
 
     },
@@ -71,14 +105,14 @@ var player = {
 
     pageRight:function(){
 
-        var channels = jQuery('#stationPicker .channelLogo');
+        var channels = jQuery('#channelPicker .channelLogo');
 
-        if(0 < player.stationPickerPagingOffset.start){
-            player.stationPickerPagingOffset.start = player.stationPickerPagingOffset.start - 1;
-            player.stationPickerPagingOffset.end = player.stationPickerPagingOffset.end - 1;
+        if(0 < player.channelPickerPagingOffset.start){
+            player.channelPickerPagingOffset.start = player.channelPickerPagingOffset.start - 1;
+            player.channelPickerPagingOffset.end = player.channelPickerPagingOffset.end - 1;
 
-            jQuery(channels[player.stationPickerPagingOffset.end]).hide('fast');
-            jQuery(channels[player.stationPickerPagingOffset.start]).show('fast');
+            jQuery(channels[player.channelPickerPagingOffset.end]).hide('fast');
+            jQuery(channels[player.channelPickerPagingOffset.start]).show('fast');
         }
 
     },
@@ -89,13 +123,13 @@ var player = {
         // Button for paging to the left
         jQuery('<div> </div>').addClass('paginationLeft')
                 .click(player.pageLeft)
-                .appendTo('#stationPicker');
+                .appendTo('#channelPicker');
 
         // Each station
         for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
 
             var display = 'block';
-            if(i > (player.stationPickerPagingOffset.end - 1)){
+            if(i > (player.channelPickerPagingOffset.end - 1)){
                 display = 'none';
             }
 
@@ -106,27 +140,27 @@ var player = {
                                     title : chan.channel
                                   })
                                  .bind('click', chan, player.changeChannel)
-                                 .bind('click', player.toggleStationPicker)
+                                 .bind('click', player.toggleChannelPicker)
                                  .addClass('channelLogo')
                                  .css('display', display)
-                                 .appendTo('#stationPicker');
+                                 .appendTo('#channelPicker');
         }
 
         // Button for paging to the right
         jQuery('<div> </div>').addClass('paginationRight')
                 .click(player.pageRight)
-                .appendTo('#stationPicker');
+                .appendTo('#channelPicker');
 
     },
 
 
-    toggleStationPicker:function(){
-        if(player.stationPickerVisible){
-            jQuery('#stationPicker').slideUp('normal');
-            player.stationPickerVisible = false;
+    toggleChannelPicker:function(){
+        if(player.channelPickerVisible){
+            jQuery('#channelPicker').slideUp('normal');
+            player.channelPickerVisible = false;
         }else{
-            jQuery('#stationPicker').slideDown('normal');
-            player.stationPickerVisible = true;
+            jQuery('#channelPicker').slideDown('normal');
+            player.channelPickerVisible = true;
         }
     },
 
@@ -154,19 +188,7 @@ var player = {
     },
 
 
-    getDefaultChannel:function(){
-        var channelName = '';
 
-        if(player.isWidget){
-            channelName = widget.preferenceForKey('lastSelectedChannel');
-        }
-
-        if(channelName === ''){
-            channelName = player.stationData.station.defaultChannel;
-        }
-
-        return channelName;
-    },
 
 
     setupPlayer:function(){
@@ -178,7 +200,7 @@ var player = {
 
         // Construct channel picker
         player.setStationSelection();
-        jQuery('#toggleStationPicker').attr({title : 'Change station'}).click(player.toggleStationPicker);
+        jQuery('#displayChannelPicker').attr({title : 'Change station'}).click(player.toggleChannelPicker);
 
         // Cache duration element to prevent reading from DOM on every update.
         var duration = jQuery("#duration");

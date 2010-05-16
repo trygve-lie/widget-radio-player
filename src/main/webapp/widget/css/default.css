@@ -32,7 +32,7 @@ body{
     -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
 }
 
-.default #stationPicker{
+.default #channelPicker{
     background-image: url(../gfx/default/background-controls.jpg);
     background-position: top left;
 	background-repeat: no-repeat;
@@ -46,7 +46,7 @@ body{
     z-index: 10;  /* Needed due to absolute positioning of underlaying elements */
 }
 
-.default #stationPicker .channelLogo{
+.default #channelPicker .channelLogo{
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -57,13 +57,13 @@ body{
     border-radius: 6pt 6pt;
 }
 
-.default #stationPicker .channelLogo:hover{
+.default #channelPicker .channelLogo:hover{
     background-color: #dddbdb;
     opacity: 0.5;
 }
 
-.default #stationPicker .paginationLeft,
-.default #stationPicker .paginationRight{    
+.default #channelPicker .paginationLeft,
+.default #channelPicker .paginationRight{
     background-image: url(../gfx/default/button-paging.png);
     background-position: top left;
 	background-repeat: no-repeat;
@@ -75,7 +75,7 @@ body{
     cursor: pointer;
 }
 
-.default #stationPicker .paginationRight{
+.default #channelPicker .paginationRight{
     float: right;
     margin-right: 5px;
 }
@@ -153,7 +153,7 @@ body{
     cursor: pointer;
 }
 
-.default #toggleStationPicker{
+.default #displayChannelPicker{
     background-image: url(../gfx/default/button-changeStations.png);
     background-position: top left;
 	background-repeat: no-repeat;
