@@ -17,7 +17,6 @@ var player = {
         if(typeof widget !== 'undefined'){
             player.isWidget = true;
         }
-
         player.getStationFeedFromServer();
     },
 
@@ -27,16 +26,22 @@ var player = {
             url: player.stationBaseUrl + player.station + "/feed.json",
             dataType: 'json',
             ifModified: true,
-            success: function readStationDataSuccess(data, textStatus){
-                player.stationData = data;
-                player.setupPlayer();
-            },
-            error: function readStationDataError(data){
-                jQuery('#error').css('display', 'block');
-                jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
-                console.log('Radio Player could not read: ' + player.stationBaseUrl + player.station + "/feed.json");
-            }
+            success: player.readStationDataSuccess,
+            error: player.readStationDataError
         });
+    },
+
+
+    readStationDataSuccess:function(data, textStatus){
+        player.stationData = data;
+        player.setupPlayer();
+    },
+
+
+    readStationDataError:function(data){
+        jQuery('#error').css('display', 'block');
+        jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
+        console.log('Radio Player could not read: ' + player.stationBaseUrl + player.station + "/feed.json");
     },
 
 
