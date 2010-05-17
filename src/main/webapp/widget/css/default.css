@@ -32,6 +32,10 @@ body{
     -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
 }
 
+.default img{
+    border: 0;
+}
+
 .default #channelPicker{
     background-image: url(../gfx/default/background-controls.jpg);
     background-position: top left;
@@ -46,11 +50,8 @@ body{
     z-index: 10;  /* Needed due to absolute positioning of underlaying elements */
 }
 
-.default #channels{
-    background-color: red;
-}
 
-.default #channelPicker .channelLogo{
+.default #channelPicker #channels img{
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -61,7 +62,7 @@ body{
     border-radius: 6pt 6pt;
 }
 
-.default #channelPicker .channelLogo:hover{
+.default #channelPicker #channels img:hover{
     background-color: #dddbdb;
     opacity: 0.5;
 }

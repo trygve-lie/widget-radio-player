@@ -2,20 +2,28 @@ var player = {
 
     VERSION:"1.0.0-ALFA",
 
-    stationBaseUrl:"http://192.168.1.36:8080/feeds/",
+    stationFeedUrl:"http://192.168.1.36:8080/feeds/nrk/feed.json",
     stationData:undefined,
-    station:"nrk",
 
     channelPickerVisible:false,
     channelPickerPagingOffset:{'start':0,'end':2},
+
+    currentMp3:undefined,
+    currentOgg:undefined,
 
     isPlaying:false,
     isWidget:false,
 
     elPlayer:undefined,
     elDuration:undefined,
+    elDisplayChannelPicker:undefined,
     elChannelPicker:undefined,
     elCurrentChannel:undefined,
+    elChannels:undefined,
+    elButtonPlay:undefined,
+    elButtonPause:undefined,
+    elButtonStop:undefined,
+    elError:undefined,
 
 
 
@@ -47,11 +55,25 @@ var player = {
         // Time duration element
         player.elDuration = jQuery("#duration");
 
+        // Channel picker open / close button
+        player.elDisplayChannelPicker = jQuery('#displayChannelPicker');
+
         // Channel picker window
         player.elChannelPicker = jQuery('#channelPicker');
 
         // Current selected channel in the display
         player.elCurrentChannel = jQuery('#currentChannel');
+
+        // Container holding each channel icon in channel picker
+        player.elChannels = jQuery('#channels');
+
+        // Start, Pause and Stop buttons
+        player.elButtonPlay = jQuery('#play');
+        player.elButtonPause = jQuery('#pause');
+        player.elButtonStop = jQuery('#stop');
+
+        // Error screen - Splach screen used to display error messages
+        player.elError = jQuery('#error');
     },
 
 
@@ -60,28 +82,26 @@ var player = {
 
     setDOMEventHandlers:function(){
 
-        // TODO: Reduce DOM access
-
         // Channel picker - Button for opening the channel picker
-        jQuery('#displayChannelPicker').attr({title : 'Change station'}).click(player.toggleChannelPicker);
+        player.elDisplayChannelPicker.attr({title : 'Change station'}).click(player.toggleChannelPicker);
 
         // Channel picker -  Button for paging to the left
-        jQuery('#channelPicker .paginationLeft').click(player.pageLeft);
+        player.elChannelPicker.find('.paginationLeft').click(player.channelPickerPageLeft);
 
         // Channel picker - Button for paging to the right
-        jQuery('#channelPicker .paginationRight').click(player.pageRight);
+        player.elChannelPicker.find('.paginationRight').click(player.channelPickerPageRight);
 
         // jPlayer is missing callback function on start / stop functions :-(.
         // Deal with continuous playing when user select channel in channel picker
-        jQuery('#play').click(function setIsPlaying(){
+        player.elButtonPlay.click(function setIsPlaying(){
             player.isPlaying = true;
         });
 
-        jQuery('#pause').click(function setIsPlaying(){
+        player.elButtonPause.click(function setIsPlaying(){
             player.isPlaying = false;
         });
 
-        jQuery('#stop').click(function setIsPlaying(){
+        player.elButtonStop.click(function setIsPlaying(){
             player.isPlaying = false;
         });
     },
@@ -92,7 +112,7 @@ var player = {
 
     getStationFeedFromServer:function(){
         jQuery.ajax({
-            url: player.stationBaseUrl + player.station + "/feed.json",
+            url: player.stationFeedUrl,
             dataType: 'json',
             ifModified: true,
             success: player.readStationDataSuccess,
@@ -103,8 +123,11 @@ var player = {
 
 
     // Action to be taken when read of a station feed is successfull
-    // TODO: Improve this!! To complex.
+
     readStationDataSuccess:function(data, textStatus){
+
+        // TODO: Rewrite this!! To complex!!!!
+
         player.stationData = data;
 
         // Push channels in feed into channel picker
@@ -114,7 +137,10 @@ var player = {
         var station = player.getChannelInFeed(channelName);
         player.setChannelInDisplay(station);
 
-        player.setPlayerFiles(station.middle.mp3, station.middle.ogg);
+        player.currentMp3 = station.middle.mp3;
+        player.currentOgg = station.middle.ogg;
+
+        player.setStreamsInPlayer();
     },
 
 
@@ -122,11 +148,9 @@ var player = {
     // Action to be taken when read of a station feed fails
 
     readStationDataError:function(data){
-
-        // TODO: Reduce DOM access
-        jQuery('#error').css('display', 'block');
-        jQuery('#error p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
-        console.log('Radio Player could not read: ' + player.stationBaseUrl + player.station + "/feed.json");
+        player.elError.css('display', 'block');
+        player.elError.find('p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
+        console.log('Radio Player could not read: ' + player.stationFeedUrl);
     },
 
 
@@ -163,11 +187,11 @@ var player = {
 
 
 
-    // TODO: Rename function
-    pageLeft:function(){
+    // Paging channels in the channel picker to the left
 
-        // TODO: Reduce DOM access
-        var channels = jQuery('#channels .channelLogo');
+    channelPickerPageLeft:function(){
+
+        var channels = player.elChannels.find('img');
 
         if(channels.length > player.channelPickerPagingOffset.end){
             jQuery(channels[player.channelPickerPagingOffset.start]).hide('fast');
@@ -180,11 +204,12 @@ var player = {
     },
 
 
-    // TODO: Rename function
-    pageRight:function(){
 
-        // TODO: Reduce DOM access
-        var channels = jQuery('#channels .channelLogo');
+    // Paging channels in the channel picker to the right
+
+    channelPickerPageRight:function(){
+
+        var channels = player.elChannels.find('img');
 
         if(0 < player.channelPickerPagingOffset.start){
             player.channelPickerPagingOffset.start = player.channelPickerPagingOffset.start - 1;
@@ -198,6 +223,8 @@ var player = {
 
 
 
+    // Push channels in a station feed into the channel picker
+
     putChannelsInStationFeedIntoChannelPicker:function(){
         for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
 
@@ -209,17 +236,19 @@ var player = {
             var chan = player.stationData.station.channels[i];
 
             jQuery('<img/>').attr({
-                                    src : player.stationBaseUrl + player.station + chan.picker_logo,
+                                    src : chan.logo,
                                     title : chan.channel
                                   })
                                  .bind('click', chan, player.changeChannel)
                                  .bind('click', player.toggleChannelPicker)
-                                 .addClass('channelLogo')
                                  .css('display', display)
-                                 .appendTo('#channels');     // TODO: Reduce DOM access
+                                 .appendTo(player.elChannels);
         }
     },
 
+
+
+    // Toggle the view of the channel picker
 
     toggleChannelPicker:function(){
         if(player.channelPickerVisible){
@@ -231,12 +260,16 @@ var player = {
         }
     },
 
+    
+
+    // Set selected channel in the channel picker to be the channel beeing played by the player
 
     changeChannel:function(event){
-        //player.elPlayer.jPlayer("clearFile");
-        //player.elPlayer.jPlayer("setFile", event.data.middle.mp3, event.data.middle.ogg);
 
-        player.setPlayerFiles(event.data.middle.mp3, event.data.middle.ogg);
+        player.currentMp3 = event.data.middle.mp3;
+        player.currentOgg = event.data.middle.ogg;
+
+        player.setStreamsInPlayer();
 
         player.setChannelInDisplay(event.data);
 
@@ -252,17 +285,21 @@ var player = {
     },
 
 
+
+    // Update the display with a given channel
+
     setChannelInDisplay:function(channel){
         player.elCurrentChannel.attr({href : channel.website, title : 'Open channels homepage'});
-
-        // TODO: Reduce DOM access
-        jQuery('#currentChannel img').attr({src : player.stationBaseUrl + player.station + channel.picker_logo});
+        player.elCurrentChannel.find('img').attr({src : channel.logo});
     },
 
 
-    setPlayerFiles:function(mp3, ogg) {
+
+    // Set current selected audio streams in the jPlayer
+
+    setStreamsInPlayer:function() {
         player.elPlayer.jPlayer("clearFile");
-        player.elPlayer.jPlayer("setFile", mp3, ogg);
+        player.elPlayer.jPlayer("setFile", player.currentMp3, player.currentOgg);
     },
 
 
@@ -272,7 +309,7 @@ var player = {
     setupPlayer:function(){
 
         player.elPlayer.jPlayer({
-            ready: function playerReady(){/* Dummy, do nothing! */},
+            ready: player.setStreamsInPlayer,
             swfPath: "script/jplayer-1.1.1/",
             nativeSupport: true,
             volume: 60,

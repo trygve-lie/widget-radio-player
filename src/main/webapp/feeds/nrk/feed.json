@@ -10,12 +10,8 @@
                 "name" : "Middels"
             }
         ],
-        "updater" : {
-            "latest" : "1.0.0-ALFA",
-            "message" : "A new version is available",
-            "download" : ""
-        },
-        "defaultChannel" : "P1",
+        "message" : "A message to the listener",
+        "defaultChannel" : "ALLTIDNYHETER",
         "channels" : [
 
             {
@@ -23,7 +19,7 @@
                 "channel" : "NRK P1",
                 "website" : "http://www.nrk.no/p1/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_p1.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_p1.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-p1-128.ogg",
@@ -36,7 +32,7 @@
                 "channel" : "NRK P2",
                 "website" : "http://www.nrk.no/p2/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_p2.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_p2.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-p2-128.ogg",
@@ -49,7 +45,7 @@
                 "channel" : "NRK P3",
                 "website" : "http://www.nrk.no/p3/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_p3.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_p3.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-petre-128.ogg",
@@ -62,7 +58,7 @@
                 "channel" : "NRK mP3",
                 "website" : "http://www.nrk.no/mp3/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_mp3.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_mp3.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-mpetre-128.ogg",
@@ -75,7 +71,7 @@
                 "channel" : "NRK Super",
                 "website" : "http://www.nrksuper.no/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_super.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_super.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no:80/nrk-super-128.ogg",
@@ -88,7 +84,7 @@
                 "channel" : "NRK Alltid Nyheter",
                 "website" : "http://www.nrk.no/alltidnyheter/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_alltidnyheter.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_alltidnyheter.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-alltid-nyheter-128.ogg",
@@ -101,7 +97,7 @@
                 "channel" : "NRK Sami Radio",
                 "website" : "http://www.nrk.no/samiradio/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_samiradio.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_samiradio.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no:80/nrk-sami-radio-128.ogg",
@@ -114,7 +110,7 @@
                 "channel" : "NRK Alltid Klassisk",
                 "website" : "http://www.nrk.no/alltidklassisk/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_klassisk.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_klassisk.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-alltid-klassisk-128.ogg",
@@ -127,7 +123,7 @@
                 "channel" : "NRK Jazz",
                 "website" : "http://www.nrk.no/jazz/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_jazz.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_jazz.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-jazz-128.ogg",
@@ -140,7 +136,7 @@
                 "channel" : "NRK Sport",
                 "website" : "http://www.nrk.no/sport/",
                 "schedule" : "",
-                "picker_logo" : "/gfx/nrk_sport.png",
+                "logo" : "http://192.168.1.36:8080/feeds/nrk/gfx/nrk_sport.png",
                 "middle" : {
                         "type" : "middle",
                         "ogg" : "http://radio.hiof.no/nrk-sport-128.ogg",
