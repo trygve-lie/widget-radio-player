@@ -2,7 +2,8 @@ var player = {
 
     VERSION:"1.0.0-ALFA",
 
-    stationFeedUrl:"http://192.168.1.36:8080/feeds/nrk/feed.json",
+    //stationFeedUrl:"http://localhost:8080/feeds/nrk/feed.json",
+    stationFeedUrl:"http://home.trygve-lie.com/work/experimental/audio/feeds/nrk/feed.json",
     stationData:undefined,
 
     channelPickerVisible:false,
@@ -310,7 +311,7 @@ var player = {
 
         player.elPlayer.jPlayer({
             ready: player.setStreamsInPlayer,
-            swfPath: "script/jplayer-1.1.1/",
+            swfPath: "script/jplayer-1.1.6/",
             nativeSupport: true,
             volume: 60,
             oggSupport: true,
