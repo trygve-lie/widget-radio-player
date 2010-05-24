@@ -19,7 +19,7 @@ body{
     font-weight:normal;
 }
 
-.default{
+.radio-default{
     background-color: #ccc;
     width: 300px;
     height: 120px;
@@ -32,11 +32,11 @@ body{
     -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
 }
 
-.default img{
+.radio-default img{
     border: 0;
 }
 
-.default #channelPicker{
+.radio-default #channelPicker{
     background-image: url(../gfx/default/background-controls.jpg);
     background-position: top left;
 	background-repeat: no-repeat;
@@ -51,7 +51,7 @@ body{
 }
 
 
-.default #channelPicker #channels img{
+.radio-default #channelPicker #channels img{
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -62,13 +62,13 @@ body{
     border-radius: 6pt 6pt;
 }
 
-.default #channelPicker #channels img:hover{
+.radio-default #channelPicker #channels img:hover{
     background-color: #dddbdb;
     opacity: 0.5;
 }
 
-.default #channelPicker .paginationLeft,
-.default #channelPicker .paginationRight{
+.radio-default #channelPicker .paginationLeft,
+.radio-default #channelPicker .paginationRight{
     background-image: url(../gfx/default/button-paging.png);
     background-position: top left;
 	background-repeat: no-repeat;
@@ -80,13 +80,13 @@ body{
     cursor: pointer;
 }
 
-.default #channelPicker .paginationRight{
+.radio-default #channelPicker .paginationRight{
     float: right;
     margin-right: 5px;
 }
 
 
-.default #display{
+.radio-default #display{
     height: 66px;
     background-image: url(../gfx/default/background-controls.jpg);
     background-position: top left;
@@ -96,7 +96,7 @@ body{
 }
 
 
-.default #currentChannel{
+.radio-default #currentChannel{
     position: absolute;
     top: 5px;
     left: 0;
@@ -106,7 +106,7 @@ body{
 }
 
 
-.default #duration{
+.radio-default #duration{
     position: absolute;
     top: 15px;
     left: 170px;
@@ -121,7 +121,7 @@ body{
 /**
  * Play button
  */
-.default #play{
+.radio-default #play{
     position: absolute;
     top: 75px;
     left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -134,7 +134,7 @@ body{
 }
 
 
-.default #pause{
+.radio-default #pause{
     position: absolute;
     top: 75px;
     left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -146,7 +146,7 @@ body{
     cursor: pointer;
 }
 
-.default #stop{
+.radio-default #stop{
     position: absolute;
     top: 75px;
     left: 210px;    /* 255px + 40px = 295px = 5px left margin  */
@@ -158,7 +158,7 @@ body{
     cursor: pointer;
 }
 
-.default #displayChannelPicker{
+.radio-default #displayChannelPicker{
     background-image: url(../gfx/default/button-changeStations.png);
     background-position: top left;
 	background-repeat: no-repeat;
@@ -170,7 +170,7 @@ body{
     cursor: pointer;
 }
 
-.default #config{
+.radio-default #config{
     display: none;                                              /*  TODO: Implement config function  */
     background-image: url(../gfx/default/button-config.png);
     background-position: top left;
@@ -183,7 +183,7 @@ body{
     cursor: pointer;
 }
 
-.default #volumeMin{
+.radio-default #volumeMin{
     position: absolute;
     top: 85px;
     left: 65px;
@@ -195,7 +195,7 @@ body{
     cursor: pointer;
 }
 
-.default #volume{
+.radio-default #volume{
     position: absolute;
     top: 95px;
     left: 90px;
@@ -205,7 +205,7 @@ body{
     cursor: pointer;
 }
 
-.default #volumeMax{
+.radio-default #volumeMax{
     position: absolute;
     top: 85px;
     left: 135px;
@@ -217,7 +217,7 @@ body{
     cursor: pointer;
 }
 
-.default #error{
+.radio-default #error{
     display: none;
     position: absolute;
     background-color: #000;

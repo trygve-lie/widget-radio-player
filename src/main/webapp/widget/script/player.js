@@ -1,9 +1,8 @@
 var player = {
 
     VERSION:"1.0.0-ALFA",
-
-    //stationFeedUrl:"http://localhost:8080/feeds/nrk/feed.json",
-    stationFeedUrl:"http://home.trygve-lie.com/work/experimental/audio/feeds/nrk/feed.json",
+    stationFeedUrl: undefined,
+    //stationFeedUrl:"http://home.trygve-lie.com/work/experimental/audio/feeds/nrk/feed.json",
     stationData:undefined,
 
     channelPickerVisible:false,
@@ -30,10 +29,12 @@ var player = {
 
     // Constructor function run at construction of document
 
-    init:function(){
+    init:function(feedUrl){
         if(typeof widget !== 'undefined'){
             player.isWidget = true;
         }
+
+        player.stationFeedUrl = feedUrl;  
 
         player.getDOMElements();
 
@@ -336,4 +337,6 @@ var player = {
 
 };
 
-jQuery(document).ready(player.init);
+jQuery(document).ready(function load(){
+    player.init("http://localhost:8080/feeds/nrk/feed.json");
+});
