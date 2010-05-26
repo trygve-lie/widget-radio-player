@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Audio Stream Test Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!--
+    <link href="css/default.css" rel="stylesheet">
+    <script src="script/jquery-1.4/jquery.min.js"></script>
+    <script src="script/jplayer-1.1.6/jquery.jplayer.js"></script>
+    <script src="script/player.js"></script>
+    -->
+</head>
+<body>
+
+<h1>Audio Stream Test Page</h1>
+<p>This tests is made for testing streaming in HTML5</p>
+
+<h2>Native audio element:</h2>
+<p>Use of native player element in HTML 5</p>
+
+<h3>Only Ogg Vorbis as source:</h3>
+<p>
+    <audio controls>
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128.ogg" />  <!-- Ogg stream -->
+    </audio>
+</p>
+
+<h3>Only Mp3 as source:</h3>
+<p>
+    <audio controls>
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128" />      <!-- Mp3 stream -->
+    </audio>
+</p>
+
+<h3>Both Ogg Vorbis and Mp3 as source:</h3>
+<p>
+    <audio controls>
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128.ogg" />  <!-- Ogg stream -->
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128" />      <!-- Mp3 stream -->
+    </audio>
+</p>
+
+
+<table border="1" width="100%">
+    <tr>
+        <th>OS:</th>
+        <th>Browser:</th>
+        <th>Ogg Vorbis:</th>
+        <th>Mp3:</th>
+        <th>Handles multiple sources:</th>
+        <th>Note:</th>
+    </tr>
+
+    <tr>
+        <td>Ubuntu</td>
+        <td>Opera 10.50</td>
+        <td>OK</td>
+        <td> </td>
+        <td>OK</td>
+        <td>Plays right away. If same stream is paused and started again without reload of page, it seems like the browser starts to play a cached part of the stream.</td>
+    </tr>
+
+    <tr>
+        <td>Ubuntu</td>
+        <td>FireFox 3.6.3</td>
+        <td>OK</td>
+        <td> </td>
+        <td>OK</td>
+        <td>Will first "pause" for ~10 seconds and then play the stream. On rare occations it will not play at all. If unsupported file format is added, player will be displayed as a grey box with an X in it.</td>
+    </tr>
+
+    <tr>
+        <td>Ubuntu</td>
+        <td>Chrome 5.0.375.55 Beta</td>
+        <td> </td>
+        <td> </td>
+        <td> </td>
+        <td>Player is shown for both Ogg and Mp3, but will not play at all.</td>
+    </tr>
+</table>
+
+
+<hr>
+
+</body>
+</html>
