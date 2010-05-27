@@ -350,5 +350,5 @@ var player = {
 };
 
 jQuery(document).ready(function load(){
-    player.init("http://localhost:8080/feeds/nrk/feed.json");
+    player.init("http://apps.trygve-lie.com/radio/feeds/nrk/feed.json");
 });
