@@ -1,86 +1,186 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Audio Stream Test Page</title>
+    <title>Test of HTML5 Audio element connected to streaming</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <!--
-    <link href="css/default.css" rel="stylesheet">
-    <script src="script/jquery-1.4/jquery.min.js"></script>
-    <script src="script/jplayer-1.1.6/jquery.jplayer.js"></script>
-    <script src="script/player.js"></script>
-    -->
 </head>
 <body>
 
-<h1>Audio Stream Test Page</h1>
-<p>This tests is made for testing streaming in HTML5</p>
+<h2>HTML 5 audio element and streaming</h2>
+<p><a href="http://www.w3.org/TR/html5/">HTML 5</a> introduce the <a href="http://www.w3.org/TR/html5/video.html#audio">audio element</a> and browsers does providing us with a native audio player for playing sound. This is a test on how well different browsers support streaming trough the native HTML 5 audio element.</p>
 
-<h2>Native audio element:</h2>
-<p>Use of native player element in HTML 5</p>
+<p>The tests are done against live Ogg and Mp3 streams provided by <a href="http://www.nrk.no/about/">The Norwegian Broadcasting Corporation</a>. The streams are served by <a href="http://www.icecast.org/">Icecast</a> servers.</p>
+
 
 <h3>Only Ogg Vorbis as source:</h3>
 <p>
+    This player has only one Ogg Vorbis source to the audio tag.
+</p>
+<p>
     <audio controls>
-        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128.ogg" />  <!-- Ogg stream -->
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128.ogg" />
     </audio>
 </p>
 
 <h3>Only Mp3 as source:</h3>
 <p>
+    This player has only one Mp3 source to the audio tag.
+</p>
+<p>
     <audio controls>
-        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128" />      <!-- Mp3 stream -->
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128" />
     </audio>
 </p>
 
 <h3>Both Ogg Vorbis and Mp3 as source:</h3>
 <p>
+    This player are provided with two sources to the audio tag. Both a Ogg Vorbis and a Mp3 source. The browser should then pick the format it supports.
+</p>
+<p>
     <audio controls>
-        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128.ogg" />  <!-- Ogg stream -->
-        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128" />      <!-- Mp3 stream -->
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128.ogg" />
+        <source src="http://radio.hiof.no/nrk-alltid-nyheter-128" />
     </audio>
 </p>
 
 
-<table border="1" width="100%">
+<h3>Test results:</h3>
+<p>
+    Each above player has been tested in different browsers on different OS's. We then get the following test results:
+</p>
+<table>
     <tr>
         <th>OS:</th>
         <th>Browser:</th>
-        <th>Ogg Vorbis:</th>
-        <th>Mp3:</th>
-        <th>Handles multiple sources:</th>
+        <th>Single Ogg:</th>
+        <th>Single Mp3:</th>
+        <th>Multiple sources:</th>
         <th>Note:</th>
     </tr>
 
+    <!-- Opera -->
     <tr>
         <td>Ubuntu</td>
-        <td>Opera 10.50</td>
-        <td>OK</td>
-        <td> </td>
-        <td>OK</td>
-        <td>Plays right away. If same stream is paused and started again without reload of page, it seems like the browser starts to play a cached part of the stream.</td>
+        <td>Opera 10.54 nightly build</td>
+        <td style="background-color: green;">true</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">true</td>
+        <td>Plays right away. If same stream is paused and started again it seems like the browser starts to play a cached part of the stream.</td>
+    </tr>
+    <tr>
+        <td>Windows XP</td>
+        <td>Opera 10.53</td>
+        <td style="background-color: green;">true</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">true</td>
+        <td>Same as on Ubuntu.</td>
+    </tr>
+    <tr>
+        <td>Mac OSX 10.6.3</td>
+        <td>Opera 10.52 beta2</td>
+        <td style="background-color: green;">true</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">true</td>
+        <td>Same as on Ubuntu.</td>
     </tr>
 
+    <!-- FireFox -->
     <tr>
         <td>Ubuntu</td>
         <td>FireFox 3.6.3</td>
-        <td>OK</td>
-        <td> </td>
-        <td>OK</td>
-        <td>Will first "pause" for ~10 seconds and then play the stream. On rare occations it will not play at all. If unsupported file format is added, player will be displayed as a grey box with an X in it.</td>
+        <td style="background-color: green;">true</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">true</td>
+        <td>Will first "pause" for ~10 seconds and then play the stream. On rare occations it will not play at all. If only unsupported file format is added, player will be displayed as a grey box with a X in it.</td>
+    </tr>
+    <tr>
+        <td>Windows XP</td>
+        <td>FireFox 3.6.2</td>
+        <td style="background-color: green;">true</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">true</td>
+        <td>Same as on Ubuntu.</td>
+    </tr>
+    <tr>
+        <td>Mac OSX 10.6.3</td>
+        <td>FireFox 3.6.2</td>
+        <td style="background-color: green;">true</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">true</td>
+        <td>Same as on Ubuntu.</td>
     </tr>
 
+    <!-- Chrome -->
     <tr>
         <td>Ubuntu</td>
         <td>Chrome 5.0.375.55 Beta</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
         <td>Player is shown for both Ogg and Mp3, but will not play at all.</td>
+    </tr>
+    <tr>
+        <td>Windows XP</td>
+        <td>Chrome 4.1.249.1064</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td>Same as on Ubuntu.</td>
+    </tr>
+    <tr>
+        <td>Windows XP</td>
+        <td>Chrome 5.0.375.55</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td>Same as on Ubuntu.</td>
+    </tr>
+    <tr>
+        <td>Mac OSX 10.6.3</td>
+        <td>Chrome 5.0.575.55</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td>Same as on Ubuntu.</td>
+    </tr>
+
+    <!-- Safari -->
+    <tr>
+        <td>Windows XP</td>
+        <td>Safari 4.0.4 (531.21.10)</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td>Same as on Ubuntu.</td>
+    </tr>
+    <tr>
+        <td>Mac OSX 10.6.3</td>
+        <td>Safari 4.0.5</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: green;">false</td>
+        <td style="background-color: green;">false</td>
+        <td> </td>
+    </tr>
+
+    <!-- IE -->
+    <tr>
+        <td>Windows XP</td>
+        <td>IE 8</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td style="background-color: red;">false</td>
+        <td>Player not shown at all.</td>
     </tr>
 </table>
 
+<h3>More about the HTML5 audio element</h3>
+<p>
+    To get more information about the audio element, please see:<br/>
+    <a href="http://www.w3.org/TR/html5/video.html#audio">W3C HTML5 Specification</a><br/>
+    <a href="http://html5doctor.com/native-audio-in-the-browser/">HTML5 Doctor</a>
+</p>
 
-<hr>
+
 
 </body>
 </html>
