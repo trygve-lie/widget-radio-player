@@ -1,3 +1,15 @@
+/**
+ *
+ * Radio Player Widget
+ * http://github.com/trygve-lie/widget-radio-player
+ * http://www.trygve-lie.com/
+ *
+ * Copyright (c) 2010 Trygve Lie
+ * Dual licensed under the MIT and GPL licenses.
+ *  - http://www.opensource.org/licenses/mit-license.php
+ *  - http://www.gnu.org/copyleft/gpl.html
+ *
+ **/
 var player = {
 
     VERSION:"1.0.0-ALFA",
