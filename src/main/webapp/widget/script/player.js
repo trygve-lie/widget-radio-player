@@ -312,7 +312,7 @@ var player = {
 
         player.elPlayer.jPlayer({
             ready: player.setStreamsInPlayer,
-            swfPath: "script/jplayer-1.1.6/",
+            swfPath: "script/jplayer-1.1.7/",
             nativeSupport: true,
             volume: 60,
             oggSupport: true,
