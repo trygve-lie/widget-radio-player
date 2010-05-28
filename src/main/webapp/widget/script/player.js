@@ -12,9 +12,10 @@
  **/
 var player = {
 
-    VERSION:"1.0.0-ALFA",
-    stationFeedUrl: "../../feeds/nrk/feed.json",
-    stationData:undefined,
+    VERSION:"1.0.1",
+
+    feedUrl: "../../feeds/nrk/feed.json",
+    feedData:undefined,
 
     channels:undefined,
     channelPickerVisible:false,
@@ -44,7 +45,7 @@ var player = {
     init:function(feedUrl){
         if(typeof widget !== 'undefined'){
             player.isWidget = true;
-            player.stationFeedUrl = feedUrl;
+            player.feedUrl = feedUrl;
         }
 
         player.getDOMElements();
@@ -125,7 +126,7 @@ var player = {
 
     getStationFeedFromServer:function(){
         jQuery.ajax({
-            url: player.stationFeedUrl,
+            url: player.feedUrl,
             dataType: 'json',
             ifModified: true,
             success: player.readStationDataSuccess,
@@ -139,21 +140,26 @@ var player = {
 
     readStationDataSuccess:function(data, textStatus){
 
-        // TODO: Rewrite this!! To complex!!!!
-
-        player.stationData = data;
+        // Set fetched data
+        player.feedData = data;
 
         // Push channels in feed into channel picker
         player.channels = player.putChannelsInStationFeedIntoChannelPicker();
 
-        var channelName = player.getDefaultChannel();
-        var station = player.getChannelInFeed(channelName);
-        player.setChannelInDisplay(station);
+        // Get default channel name
+        var channelName = player.getDefaultChannelName();
 
-        player.currentMp3 = station.middle.mp3;
-        player.currentOgg = station.middle.ogg;
+        // Set default channel object
+        var channel = player.getChannelInFeed(channelName);
 
+        // Set channel in display
+        player.setChannelInDisplay(channel);
+
+        // Set channel streams on player
+        player.currentMp3 = channel.middle.mp3;
+        player.currentOgg = channel.middle.ogg;
         player.setStreamsInPlayer();
+
     },
 
 
@@ -163,7 +169,7 @@ var player = {
     readStationDataError:function(data){
         player.elError.css('display', 'block');
         player.elError.find('p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
-        console.log('Radio Player could not read: ' + player.stationFeedUrl);
+        console.log('Radio Player could not read: ' + player.feedUrl);
     },
 
 
@@ -171,10 +177,10 @@ var player = {
     // Get a channel by it's name in a station feed
 
     getChannelInFeed:function(name){
-        var c = player.stationData.station.channels.length;
+        var c = player.feedData.station.channels.length;
         while(c--){
-            if(player.stationData.station.channels[c].name === name){
-                return player.stationData.station.channels[c];
+            if(player.feedData.station.channels[c].name === name){
+                return player.feedData.station.channels[c];
             }
         }
     },
@@ -184,7 +190,7 @@ var player = {
     // Get the channel to be presented to the user by start up of the player.
     // If in widget mode, the last played station are presented. If not, the default in the feed should be used.
 
-    getDefaultChannel:function(){
+    getDefaultChannelName:function(){
         var channelName = '';
 
         if(player.isWidget){
@@ -192,7 +198,7 @@ var player = {
         }
 
         if(channelName === ''){
-            channelName = player.stationData.station.defaultChannel;
+            channelName = player.feedData.station.defaultChannel;
         }
 
         return channelName;
@@ -204,12 +210,15 @@ var player = {
 
     channelPickerPageLeft:function(){
 
-        if((player.channels.length - 1) > player.channelPickerPagingOffset.end){
-            jQuery(player.channels[player.channelPickerPagingOffset.start]).hide('fast');
-            jQuery(player.channels[(player.channelPickerPagingOffset.end + 1)]).show('fast');
+        var channels = player.channels;
+        var offset = player.channelPickerPagingOffset;
 
-            player.channelPickerPagingOffset.start++;
-            player.channelPickerPagingOffset.end++;
+        if((channels.length - 1) > offset.end){
+            jQuery(channels[offset.start]).hide('fast');
+            jQuery(channels[offset.end + 1]).show('fast');
+
+            offset.start++;
+            offset.end++;
         }
 
     },
@@ -220,13 +229,15 @@ var player = {
 
     channelPickerPageRight:function(){
 
-        if(0 < player.channelPickerPagingOffset.start){
+        var channels = player.channels;
+        var offset = player.channelPickerPagingOffset;
 
-            jQuery(player.channels[player.channelPickerPagingOffset.end]).hide('fast');
-            jQuery(player.channels[(player.channelPickerPagingOffset.start - 1)]).show('fast');
+        if(0 < offset.start){
+            jQuery(channels[offset.end]).hide('fast');
+            jQuery(channels[offset.start - 1]).show('fast');
 
-            player.channelPickerPagingOffset.start--;
-            player.channelPickerPagingOffset.end--;
+            offset.start--;
+            offset.end--;
         }
         
     },
@@ -239,14 +250,14 @@ var player = {
 
         var channels = [];
 
-        for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
+        for (var i = 0, len = player.feedData.station.channels.length; i < len; i++) {
 
             var display = 'none';
             if(i >= player.channelPickerPagingOffset.start && i <= player.channelPickerPagingOffset.end){
                 display = 'block';
             }
 
-            var chan = player.stationData.station.channels[i];
+            var chan = player.feedData.station.channels[i];
 
             var el = jQuery('<img/>').attr({
                                     src : chan.logo,
