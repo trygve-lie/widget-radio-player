@@ -17,7 +17,7 @@ var player = {
     stationData:undefined,
 
     channelPickerVisible:false,
-    channelPickerPagingOffset:{'start':0,'end':2},
+    channelPickerPagingOffset:{'start':0,'end':1},
 
     currentMp3:undefined,
     currentOgg:undefined,
@@ -205,12 +205,12 @@ var player = {
 
         var channels = player.elChannels.find('img');
 
-        if(channels.length > player.channelPickerPagingOffset.end){
+        if((channels.length - 1) > player.channelPickerPagingOffset.end){
             jQuery(channels[player.channelPickerPagingOffset.start]).hide('fast');
-            jQuery(channels[player.channelPickerPagingOffset.end]).show('fast');
+            jQuery(channels[(player.channelPickerPagingOffset.end + 1)]).show('fast');
 
-            player.channelPickerPagingOffset.start = player.channelPickerPagingOffset.start + 1;
-            player.channelPickerPagingOffset.end = player.channelPickerPagingOffset.end + 1;
+            player.channelPickerPagingOffset.start++;
+            player.channelPickerPagingOffset.end++;
         }
 
     },
@@ -224,13 +224,14 @@ var player = {
         var channels = player.elChannels.find('img');
 
         if(0 < player.channelPickerPagingOffset.start){
-            player.channelPickerPagingOffset.start = player.channelPickerPagingOffset.start - 1;
-            player.channelPickerPagingOffset.end = player.channelPickerPagingOffset.end - 1;
 
             jQuery(channels[player.channelPickerPagingOffset.end]).hide('fast');
-            jQuery(channels[player.channelPickerPagingOffset.start]).show('fast');
-        }
+            jQuery(channels[(player.channelPickerPagingOffset.start - 1)]).show('fast');
 
+            player.channelPickerPagingOffset.start--;
+            player.channelPickerPagingOffset.end--;
+        }
+        
     },
 
 
@@ -240,9 +241,9 @@ var player = {
     putChannelsInStationFeedIntoChannelPicker:function(){
         for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
 
-            var display = 'block';
-            if(i > (player.channelPickerPagingOffset.end - 1)){
-                display = 'none';
+            var display = 'none';
+            if(i >= player.channelPickerPagingOffset.start && i <= player.channelPickerPagingOffset.end){
+                display = 'block';
             }
 
             var chan = player.stationData.station.channels[i];
