@@ -177,10 +177,14 @@ var player = {
     // Get a channel by it's name in a station feed
 
     getChannelInFeed:function(name){
-        var c = player.feedData.station.channels.length;
-        while(c--){
-            if(player.feedData.station.channels[c].name === name){
-                return player.feedData.station.channels[c];
+
+        // Variable cache
+        var channels = player.feedData.station.channels;
+
+        var i = channels.length;
+        while(i--){
+            if(channels[i].name === name){
+                return channels[i];
             }
         }
     },
@@ -210,6 +214,7 @@ var player = {
 
     channelPickerPageLeft:function(){
 
+        // Variable cache
         var channels = player.channels;
         var offset = player.channelPickerPagingOffset;
 
@@ -229,6 +234,7 @@ var player = {
 
     channelPickerPageRight:function(){
 
+        // Variable cache
         var channels = player.channels;
         var offset = player.channelPickerPagingOffset;
 
@@ -248,22 +254,24 @@ var player = {
 
     putChannelsInStationFeedIntoChannelPicker:function(){
 
+        // Variable cache
+        var feedChannels = player.feedData.station.channels;
+        var offset = player.channelPickerPagingOffset;
+
         var channels = [];
 
-        for (var i = 0, len = player.feedData.station.channels.length; i < len; i++) {
+        for (var i = 0, len = feedChannels.length; i < len; i++) {
 
             var display = 'none';
-            if(i >= player.channelPickerPagingOffset.start && i <= player.channelPickerPagingOffset.end){
+            if(i >= offset.start && i <= offset.end){
                 display = 'block';
             }
 
-            var chan = player.feedData.station.channels[i];
-
             var el = jQuery('<img/>').attr({
-                                    src : chan.logo,
-                                    title : chan.channel
+                                    src : feedChannels[i].logo,
+                                    title : feedChannels[i].channel
                                   })
-                                 .bind('click', chan, player.changeChannel)
+                                 .bind('click', feedChannels[i], player.changeChannel)
                                  .bind('click', player.toggleChannelPicker)
                                  .css('display', display)
                                  .appendTo(player.elChannels);
