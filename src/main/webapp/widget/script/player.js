@@ -14,7 +14,6 @@ var player = {
 
     VERSION:"1.0.0-ALFA",
     stationFeedUrl: undefined,
-    //stationFeedUrl:"http://home.trygve-lie.com/work/experimental/audio/feeds/nrk/feed.json",
     stationData:undefined,
 
     channelPickerVisible:false,
