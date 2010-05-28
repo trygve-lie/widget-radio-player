@@ -16,6 +16,7 @@ var player = {
     stationFeedUrl: "../../feeds/nrk/feed.json",
     stationData:undefined,
 
+    channels:undefined,
     channelPickerVisible:false,
     channelPickerPagingOffset:{'start':0,'end':1},
 
@@ -143,7 +144,7 @@ var player = {
         player.stationData = data;
 
         // Push channels in feed into channel picker
-        player.putChannelsInStationFeedIntoChannelPicker();
+        player.channels = player.putChannelsInStationFeedIntoChannelPicker();
 
         var channelName = player.getDefaultChannel();
         var station = player.getChannelInFeed(channelName);
@@ -203,11 +204,9 @@ var player = {
 
     channelPickerPageLeft:function(){
 
-        var channels = player.elChannels.find('img');
-
-        if((channels.length - 1) > player.channelPickerPagingOffset.end){
-            jQuery(channels[player.channelPickerPagingOffset.start]).hide('fast');
-            jQuery(channels[(player.channelPickerPagingOffset.end + 1)]).show('fast');
+        if((player.channels.length - 1) > player.channelPickerPagingOffset.end){
+            jQuery(player.channels[player.channelPickerPagingOffset.start]).hide('fast');
+            jQuery(player.channels[(player.channelPickerPagingOffset.end + 1)]).show('fast');
 
             player.channelPickerPagingOffset.start++;
             player.channelPickerPagingOffset.end++;
@@ -221,12 +220,10 @@ var player = {
 
     channelPickerPageRight:function(){
 
-        var channels = player.elChannels.find('img');
-
         if(0 < player.channelPickerPagingOffset.start){
 
-            jQuery(channels[player.channelPickerPagingOffset.end]).hide('fast');
-            jQuery(channels[(player.channelPickerPagingOffset.start - 1)]).show('fast');
+            jQuery(player.channels[player.channelPickerPagingOffset.end]).hide('fast');
+            jQuery(player.channels[(player.channelPickerPagingOffset.start - 1)]).show('fast');
 
             player.channelPickerPagingOffset.start--;
             player.channelPickerPagingOffset.end--;
@@ -239,6 +236,9 @@ var player = {
     // Push channels in a station feed into the channel picker
 
     putChannelsInStationFeedIntoChannelPicker:function(){
+
+        var channels = [];
+
         for (var i = 0, len = player.stationData.station.channels.length; i < len; i++) {
 
             var display = 'none';
@@ -248,7 +248,7 @@ var player = {
 
             var chan = player.stationData.station.channels[i];
 
-            jQuery('<img/>').attr({
+            var el = jQuery('<img/>').attr({
                                     src : chan.logo,
                                     title : chan.channel
                                   })
@@ -256,7 +256,11 @@ var player = {
                                  .bind('click', player.toggleChannelPicker)
                                  .css('display', display)
                                  .appendTo(player.elChannels);
+
+            channels.push(el);
         }
+
+        return channels;
     },
 
 
