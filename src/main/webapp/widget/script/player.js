@@ -13,7 +13,7 @@
 var player = {
 
     VERSION:"1.0.0-ALFA",
-    stationFeedUrl: undefined,
+    stationFeedUrl: "../../feeds/nrk/feed.json",
     stationData:undefined,
 
     channelPickerVisible:false,
@@ -43,9 +43,8 @@ var player = {
     init:function(feedUrl){
         if(typeof widget !== 'undefined'){
             player.isWidget = true;
+            player.stationFeedUrl = feedUrl;
         }
-
-        player.stationFeedUrl = feedUrl;  
 
         player.getDOMElements();
 
