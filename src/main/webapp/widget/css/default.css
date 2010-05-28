@@ -11,6 +11,9 @@
  *
  **/
 
+
+/* Font for digital display */
+
 @font-face {
 	font-family: 'RadiolandRegular';
 	src: url('../fonts/RADIOLAND-webfont.eot');
@@ -19,6 +22,10 @@
 	font-style: normal;
 }
 
+
+
+/* Base formating for the document */
+
 *{
     margin: 0;
     padding: 0;
@@ -26,14 +33,18 @@
 
 body{
     background-color: #999;
+}
+
+
+
+/* Default theme - Container for the page */
+
+.radio-default{
+    background-color: #ccc;
     font-family: Verdana,sans-serif;
     font-style:normal;
     font-variant:normal;
     font-weight:normal;
-}
-
-.radio-default{
-    background-color: #ccc;
     width: 300px;
     height: 120px;
     overflow: hidden;
@@ -45,9 +56,17 @@ body{
     -apple-dashboard-region:dashboard-region(control rectangle 0px 0px 0px 0px);
 }
 
+
+
+/* Default theme - All pictures */
+
 .radio-default img{
     border: 0;
 }
+
+
+
+/* Default theme - Channel picker */
 
 .radio-default #channelPicker{
     background-image: url(../gfx/default/background-controls.jpg);
@@ -62,7 +81,6 @@ body{
     color: #fff;
     z-index: 10;  /* Needed due to absolute positioning of underlaying elements */
 }
-
 
 .radio-default #channelPicker #channels img{
     float: left;
@@ -99,6 +117,9 @@ body{
 }
 
 
+
+/* Default theme - Conteiner for displayl */
+
 .radio-default #display{
     height: 66px;
     background-image: url(../gfx/default/background-controls.jpg);
@@ -109,6 +130,9 @@ body{
 }
 
 
+
+/* Default theme - Channel picker */
+
 .radio-default #currentChannel{
     position: absolute;
     top: 5px;
@@ -118,6 +142,9 @@ body{
     height: 56px;
 }
 
+
+
+/* Default theme - Duration */
 
 .radio-default #duration{
     position: absolute;
@@ -131,81 +158,59 @@ body{
 }
 
 
-/**
- * Play button
- */
-.radio-default #play{
-    position: absolute;
-    top: 75px;
-    left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
-    width: 40px;
-    height: 40px;
-    background-image: url(../gfx/default/button-play.png);
-    background-position: top left;
-	background-repeat: no-repeat;
-    cursor: pointer;
-}
 
+/* Default theme - Start, Stop and Pause buttons */
 
+.radio-default #stop,
+.radio-default #play,
 .radio-default #pause{
     position: absolute;
     top: 75px;
-    left: 255px;    /* 255px + 40px = 295px = 5px left margin  */
     width: 40px;
     height: 40px;
-    background-image: url(../gfx/default/button-pause.png);
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
 }
 
 .radio-default #stop{
-    position: absolute;
-    top: 75px;
-    left: 210px;    /* 255px + 40px = 295px = 5px left margin  */
-    width: 40px;
-    height: 40px;
+    left: 210px;
     background-image: url(../gfx/default/button-stop.png);
-    background-position: top left;
-	background-repeat: no-repeat;
-    cursor: pointer;
 }
 
-.radio-default #displayChannelPicker{
-    background-image: url(../gfx/default/button-changeStations.png);
-    background-position: top left;
-	background-repeat: no-repeat;
-    position: absolute;
-    top: 85px;
-    left: 5px;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
+.radio-default #play{
+    left: 255px;
+    background-image: url(../gfx/default/button-play.png);
 }
 
-.radio-default #config{
-    display: none;                                              /*  TODO: Implement config function  */
-    background-image: url(../gfx/default/button-config.png);
-    background-position: top left;
-	background-repeat: no-repeat;
+.radio-default #pause{
+    left: 255px;
+    background-image: url(../gfx/default/button-pause.png);
+}
+
+
+
+/* Default theme - Volume control */
+
+.radio-default #volumeMin,
+.radio-default #volumeMax{
     position: absolute;
     top: 85px;
-    left: 35px;
     width: 25px;
     height: 25px;
+    background-position: top left;
+	background-repeat: no-repeat;
     cursor: pointer;
 }
 
 .radio-default #volumeMin{
-    position: absolute;
-    top: 85px;
     left: 65px;
-    width: 25px;
-    height: 25px;
     background-image: url(../gfx/default/button-sound-mute.png);
-    background-position: top left;
-	background-repeat: no-repeat;
-    cursor: pointer;
+}
+
+.radio-default #volumeMax{
+    left: 135px;
+    background-image: url(../gfx/default/button-sound-max.png);
 }
 
 .radio-default #volume{
@@ -218,17 +223,35 @@ body{
     cursor: pointer;
 }
 
-.radio-default #volumeMax{
+
+
+/* Default theme - Config buttons */
+
+.radio-default #displayChannelPicker,
+.radio-default #config{
     position: absolute;
-    top: 85px;
-    left: 135px;
-    width: 25px;
-    height: 25px;
-    background-image: url(../gfx/default/button-sound-max.png);
     background-position: top left;
 	background-repeat: no-repeat;
+    top: 85px;
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
+
+.radio-default #displayChannelPicker{
+    left: 5px;
+    background-image: url(../gfx/default/button-changeStations.png);
+}
+
+.radio-default #config{
+    display: none;                                              /*  TODO: Implement config function  */
+    left: 35px;
+    background-image: url(../gfx/default/button-config.png);
+}
+
+
+
+/* Default theme - Error frame */
 
 .radio-default #error{
     display: none;
