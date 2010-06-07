@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>AllowMultipleInstances</key>
+    <string>false</string>
+    <key>AllowNetworkAccess</key>
+    <true/>
+    <key>CFBundleDisplayName</key>
+    <string>Radio Player</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.trygve-lie.apps.radioplayer</string>
+    <key>CFBundleVersion</key>
+    <string>1.0</string>
+    <key>CloseBoxInsetX</key>
+    <integer>16</integer>
+    <key>CloseBoxInsetY</key>
+    <integer>14</integer>
+    <key>MainHTML</key>
+    <string>index.html</string>
+</dict>
+</plist>

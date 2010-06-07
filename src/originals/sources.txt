@@ -2,6 +2,8 @@ Stations:    http://www.nrk.no/radio/
 Logos:       http://www.nrk.no/informasjon/design/1.6634042
 Backgrounds: http://www.nrk.no/informasjon/design/1.6631147
 Mac Widget:  http://developer.apple.com/macosx/dashboard.html
+             http://andrew.hedges.name/widgets/dev/
+             http://www.apple.com/downloads/dashboard/
 Win Gadgets: http://msdn.microsoft.com/nb-no/library/bb456468(v=VS.85).aspx
 Google apps: http://code.google.com/chrome/apps/docs/developers_guide.html
 Podcasts:    http://www.nrk.no/podkast/
