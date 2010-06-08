@@ -1,0 +1,23 @@
+This widget are packaged to support several widget systems.
+
+First of all; the player is mainly intended to follow the W3C Widget specification.
+Sadly not all follow this specification. Shame on them!! This file is intended to keep track of what file
+belong to each packaging system.
+
+Common player files and directories:
+- css
+- fonts
+- gfx
+- script
+- index.html
+- README
+
+
+Files belonging to the W3C Widget specification - http://www.w3.org/TR/widgets/:
+- config.xml
+
+
+Files belonging to the Apple Desktop Widget specification - http://developer.apple.com/macosx/dashboard.html:
+- Default.png
+- Icon.png
+- Info.plist
