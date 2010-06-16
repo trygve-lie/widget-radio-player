@@ -82,7 +82,8 @@ body{
     z-index: 10;  /* Needed due to absolute positioning of underlaying elements */
 }
 
-.radio-default #channelPicker #channels img{
+.radio-default #channelPicker #channels a{
+    display: block;
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -91,9 +92,10 @@ body{
     color: #000;
     cursor: pointer;
     border-radius: 6pt 6pt;
+    text-indent: -9999px;
 }
 
-.radio-default #channelPicker #channels img:hover{
+.radio-default #channelPicker #channels a:hover{
     background-color: #dddbdb;
     opacity: 0.5;
 }
@@ -109,6 +111,7 @@ body{
     width: 15px;
     height: 56px;
     cursor: pointer;
+    text-indent: -9999px;
 }
 
 .radio-default #channelPicker .paginationRight{
@@ -171,6 +174,7 @@ body{
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
+    text-indent: -9999px;
 }
 
 .radio-default #stop{
@@ -201,6 +205,7 @@ body{
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
+    text-indent: -9999px;
 }
 
 .radio-default #volumeMin{
@@ -221,6 +226,7 @@ body{
     height: 5px;
     background-color: #999;
     cursor: pointer;
+    text-indent: -9999px;
 }
 
 
@@ -236,17 +242,20 @@ body{
     width: 25px;
     height: 25px;
     cursor: pointer;
+    text-indent: -9999px;
 }
 
 .radio-default #displayChannelPicker{
     left: 5px;
     background-image: url(../gfx/default/button-changeStations.png);
+    text-indent: -9999px;
 }
 
 .radio-default #config{
     display: none;                                              /*  TODO: Implement config function  */
     left: 35px;
     background-image: url(../gfx/default/button-config.png);
+    text-indent: -9999px;
 }
 
 

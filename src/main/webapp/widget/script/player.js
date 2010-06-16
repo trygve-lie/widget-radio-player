@@ -267,16 +267,20 @@ var player = {
                 display = 'block';
             }
 
-            var el = jQuery('<img/>').attr({
-                                    src : feedChannels[i].logo,
+            var el = jQuery('<a/>').attr({
                                     title : feedChannels[i].channel
                                   })
+                                 .text(feedChannels[i].channel)
                                  .bind('click', feedChannels[i], player.changeChannel)
                                  .bind('click', player.toggleChannelPicker)
-                                 .css('display', display)
+                                 .css({
+                                    'display' : display,
+                                    'background-image' : 'url(' + feedChannels[i].logo + ')'
+                                 })
                                  .appendTo(player.elChannels);
 
             channels.push(el);
+
         }
 
         return channels;
@@ -325,7 +329,7 @@ var player = {
     // Update the display with a given channel
 
     setChannelInDisplay:function(channel){
-        player.elCurrentChannel.attr({href : channel.website, title : 'Open channels homepage'});
+        player.elCurrentChannel.attr({href : channel.website, title : 'Open channels homepage', target : '_blank'});
         player.elCurrentChannel.find('img').attr({src : channel.logo});
     },
 
