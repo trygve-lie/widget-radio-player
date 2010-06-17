@@ -268,7 +268,8 @@ var player = {
             }
 
             var el = jQuery('<a/>').attr({
-                                    title : feedChannels[i].channel
+                                    title : feedChannels[i].channel,
+                                    tabindex : (10 + i)
                                   })
                                  .text(feedChannels[i].channel)
                                  .bind('click', feedChannels[i], player.changeChannel)
