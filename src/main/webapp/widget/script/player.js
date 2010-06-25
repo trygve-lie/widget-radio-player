@@ -267,11 +267,10 @@ var player = {
                 display = 'block';
             }
 
-            var el = jQuery('<a/>').attr({
+            var link = jQuery('<a/>').attr({
                                     title : feedChannels[i].channel,
                                     tabindex : (10 + i)
                                   })
-                                 .text(feedChannels[i].channel)
                                  .bind('click', feedChannels[i], player.changeChannel)
                                  .bind('click', player.toggleChannelPicker)
                                  .css({
@@ -280,7 +279,9 @@ var player = {
                                  })
                                  .appendTo(player.elChannels);
 
-            channels.push(el);
+            var txt = jQuery('<span/>').text(feedChannels[i].channel).appendTo(link);
+
+            channels.push(link);
 
         }
 

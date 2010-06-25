@@ -66,6 +66,18 @@ body{
 
 
 
+/*
+    Default theme - hide inner text
+    There is inner text on elements holding graphic elements for better support for screen readers. This text must be set to hidden
+    so it does not display in non screen readers. To be able to hide the text we have added a span around the text so the text can be
+    hidden and still keeping the anchor tag the graphic element is attached to.
+*/
+.radio-default a span{
+    display: none;
+}
+
+
+
 /* Default theme - Channel picker */
 
 .radio-default #channelPicker{
@@ -92,7 +104,6 @@ body{
     color: #000;
     cursor: pointer;
     border-radius: 6pt 6pt;
-    text-indent: -9999px;
 }
 
 .radio-default #channelPicker #channels a:hover{
@@ -111,7 +122,6 @@ body{
     width: 15px;
     height: 56px;
     cursor: pointer;
-    text-indent: -9999px;
 }
 
 .radio-default #channelPicker .paginationRight{
@@ -174,7 +184,6 @@ body{
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
-    text-indent: -9999px;
 }
 
 .radio-default #stop{
@@ -205,7 +214,6 @@ body{
     background-position: top left;
 	background-repeat: no-repeat;
     cursor: pointer;
-    text-indent: -9999px;
 }
 
 .radio-default #volumeMin{
@@ -226,7 +234,6 @@ body{
     height: 5px;
     background-color: #999;
     cursor: pointer;
-    text-indent: -9999px;
 }
 
 
@@ -242,20 +249,17 @@ body{
     width: 25px;
     height: 25px;
     cursor: pointer;
-    text-indent: -9999px;
 }
 
 .radio-default #displayChannelPicker{
     left: 5px;
     background-image: url(../gfx/default/button-changeStations.png);
-    text-indent: -9999px;
 }
 
 .radio-default #config{
     display: none;                                              /*  TODO: Implement config function  */
     left: 35px;
     background-image: url(../gfx/default/button-config.png);
-    text-indent: -9999px;
 }
 
 
