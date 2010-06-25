@@ -113,7 +113,6 @@ body{
 
 .radio-default #channelPicker .paginationLeft,
 .radio-default #channelPicker .paginationRight{
-    background-image: url(../gfx/default/button-paging.png);
     background-position: top left;
 	background-repeat: no-repeat;
     float: left;
@@ -124,7 +123,12 @@ body{
     cursor: pointer;
 }
 
+.radio-default #channelPicker .paginationLeft{
+    background-image: url(../gfx/default/button-paging-left.png);
+}
+
 .radio-default #channelPicker .paginationRight{
+    background-image: url(../gfx/default/button-paging-right.png);
     float: right;
     margin-right: 5px;
 }
