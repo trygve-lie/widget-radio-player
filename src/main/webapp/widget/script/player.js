@@ -245,7 +245,7 @@ var player = {
             offset.start--;
             offset.end--;
         }
-        
+
     },
 
 
@@ -258,11 +258,16 @@ var player = {
         var feedChannels = player.feedData.station.channels;
         var offset = player.channelPickerPagingOffset;
 
+        // Adjusting offset to start on end
+        offset.start = feedChannels.length - 2;
+        offset.end = feedChannels.length - 1;
+
         var channels = [];
 
         for (var i = 0, len = feedChannels.length; i < len; i++) {
 
             var display = 'none';
+
             if(i >= offset.start && i <= offset.end){
                 display = 'block';
             }
