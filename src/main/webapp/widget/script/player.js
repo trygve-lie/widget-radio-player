@@ -31,6 +31,8 @@ var player = {
     elDuration:undefined,
     elDisplayChannelPicker:undefined,
     elChannelPicker:undefined,
+    elPaginationLeft:undefined,
+    elPaginationRight:undefined,
     elCurrentChannel:undefined,
     elChannels:undefined,
     elButtonPlay:undefined,
@@ -75,6 +77,12 @@ var player = {
         // Channel picker window
         player.elChannelPicker = jQuery('#channelPicker');
 
+        // Channel picker - Pagination to the left
+        player.elPaginationLeft = jQuery('#paginationLeft');
+
+        // Channel picker - Pagination to the right
+        player.elPaginationRight = jQuery('#paginationRight');
+
         // Current selected channel in the display
         player.elCurrentChannel = jQuery('#currentChannel');
 
@@ -100,10 +108,10 @@ var player = {
         player.elDisplayChannelPicker.attr({title : 'Change station'}).click(player.toggleChannelPicker);
 
         // Channel picker -  Button for paging to the left
-        player.elChannelPicker.find('.paginationLeft').click(player.channelPickerPageLeft);
+        player.elPaginationLeft.click(player.channelPickerPageLeft);
 
         // Channel picker - Button for paging to the right
-        player.elChannelPicker.find('.paginationRight').click(player.channelPickerPageRight);
+        player.elPaginationRight.click(player.channelPickerPageRight);
 
         // jPlayer is missing callback function on start / stop functions :-(.
         // Deal with continuous playing when user select channel in channel picker
@@ -226,6 +234,13 @@ var player = {
             offset.end++;
         }
 
+        // Set pagination arrow to active / inactive
+        if((channels.length - 1) === offset.end){
+            player.elPaginationLeft.attr({'class' : 'inactive'});
+        }else{
+            player.elPaginationRight.attr({'class' : 'active'});
+        }
+
     },
 
 
@@ -244,6 +259,13 @@ var player = {
 
             offset.start--;
             offset.end--;
+        }
+
+        // Set pagination arrow to active / inactive
+        if(offset.start === 0){
+            player.elPaginationRight.attr({'class' : 'inactive'});
+        }else{
+            player.elPaginationLeft.attr({'class' : 'active'});
         }
 
     },

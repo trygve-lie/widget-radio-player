@@ -103,16 +103,18 @@ body{
     height: 56px;
     color: #000;
     cursor: pointer;
-    border-radius: 6pt 6pt;
 }
 
-.radio-default #channelPicker #channels a:hover{
+.radio-default #channelPicker #channels a:hover,
+.radio-default #channelPicker #paginationLeft.active:hover,
+.radio-default #channelPicker #paginationRight.active:hover{
     background-color: #dddbdb;
+    border-radius: 6pt 6pt;
     opacity: 0.5;
 }
 
-.radio-default #channelPicker .paginationLeft,
-.radio-default #channelPicker .paginationRight{
+.radio-default #channelPicker #paginationLeft,
+.radio-default #channelPicker #paginationRight{
     background-position: top left;
 	background-repeat: no-repeat;
     float: left;
@@ -123,14 +125,27 @@ body{
     cursor: pointer;
 }
 
-.radio-default #channelPicker .paginationLeft{
+.radio-default #channelPicker #paginationRight{
+    float: right;
+    margin-right: 5px;
+}
+
+.radio-default #channelPicker #paginationLeft.active{
     background-image: url(../gfx/default/button-paging-left.png);
 }
 
-.radio-default #channelPicker .paginationRight{
+.radio-default #channelPicker #paginationLeft.inactive{
+    background-image: url(../gfx/default/button-paging-left-inactive.png);
+    cursor: auto;
+}
+
+.radio-default #channelPicker #paginationRight.active{
     background-image: url(../gfx/default/button-paging-right.png);
-    float: right;
-    margin-right: 5px;
+}
+
+.radio-default #channelPicker #paginationRight.inactive{
+    background-image: url(../gfx/default/button-paging-right-inactive.png);
+    cursor: auto;
 }
 
 
