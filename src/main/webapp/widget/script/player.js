@@ -41,7 +41,6 @@ var player = {
     elError:undefined,
 
 
-
     // Constructor function run at construction of document
 
     init:function(feedUrl){
@@ -175,9 +174,16 @@ var player = {
     // Action to be taken when read of a station feed fails
 
     readStationDataError:function(data){
-        player.elError.css('display', 'block');
-        player.elError.find('p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
+        // player.elError.css('display', 'block');
+        // player.elError.find('p').text('Jikes! Seems like we can not read the radio information from server. Please try again later or check the browser log for a detailed error message.');
         console.log('Radio Player could not read: ' + player.feedUrl);
+
+        // TODO: REMOVE when XHR bug get fixed in Opera!!!!!!
+        // This is a serious bad workaround for the following bug in Opera 10.60:
+        // http://my.opera.com/community/forums/topic.dml?id=632012
+        
+        var data = {"station":{"name":"NRK","fullname":"Norsk Rikskringkasting AS","website":"http://www.nrk.no/","newsfeed":"http://www.nrk.no/nyheiter/siste.rss","qualitys":[{"type":"middle","name":"Middels"}],"message":"A message to the listener","defaultChannel":"ALLTID NYHETER","channels":[{"name":"SPORT","channel":"NRK Sport","website":"http://www.nrk.no/sport/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_sport.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-sport-128.ogg","mp3":"http://radio.hiof.no/nrk-sport-128"}},{"name":"JAZZ","channel":"NRK Jazz","website":"http://www.nrk.no/jazz/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_jazz.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-jazz-128.ogg","mp3":"http://radio.hiof.no/nrk-jazz-128"}},{"name":"KLASSISK","channel":"NRK Alltid Klassisk","website":"http://www.nrk.no/alltidklassisk/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_klassisk.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-alltid-klassisk-128.ogg","mp3":"http://radio.hiof.no/nrk-alltid-klassisk-128"}},{"name":"SAMI","channel":"NRK Sami Radio","website":"http://www.nrk.no/samiradio/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_samiradio.png","middle":{"type":"middle","ogg":"http://radio.hiof.no:80/nrk-sami-radio-128.ogg","mp3":"http://radio.hiof.no:80/nrk-sami-radio-128"}},{"name":"ALLTIDNYHETER","channel":"NRK Alltid Nyheter","website":"http://www.nrk.no/alltidnyheter/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_alltidnyheter.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-alltid-nyheter-128.ogg","mp3":"http://radio.hiof.no/nrk-alltid-nyheter-128"}},{"name":"SUPER","channel":"NRK Super","website":"http://www.nrksuper.no/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_super.png","middle":{"type":"middle","ogg":"http://radio.hiof.no:80/nrk-super-128.ogg","mp3":"http://radio.hiof.no:80/nrk-super-128"}},{"name":"MP3","channel":"NRK mP3","website":"http://www.nrk.no/mp3/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_mp3.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-mpetre-128.ogg","mp3":"http://radio.hiof.no/nrk-mpetre-128"}},{"name":"P3","channel":"NRK P3","website":"http://www.nrk.no/p3/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_p3.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-petre-128.ogg","mp3":"http://radio.hiof.no/nrk-petre-128"}},{"name":"P2","channel":"NRK P2","website":"http://www.nrk.no/p2/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_p2.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-p2-128.ogg","mp3":"http://radio.hiof.no/nrk-p2-128"}},{"name":"P1","channel":"NRK P1","website":"http://www.nrk.no/p1/","schedule":"","logo":"http://apps.trygve-lie.com/radio/feeds/nrk/gfx/nrk_p1.png","middle":{"type":"middle","ogg":"http://radio.hiof.no/nrk-p1-128.ogg","mp3":"http://radio.hiof.no/nrk-p1-128"}}]}};
+        player.readStationDataSuccess(data, null);
     },
 
 
